@@ -4,7 +4,7 @@
 ChimbaBench
 
 ### Description
-OpenGL Benchmark.
+Benchmark (OpenGL API).
 
 ### System requirements:
 - Windows 7 or newer
