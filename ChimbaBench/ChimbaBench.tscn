@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/ChimbaBench.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/BaseSystemInfo.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/GUI_Info.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/NvidiaSmiInfo.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/LanguageTest.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/BasePerfInfo.gd" type="Script" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -13,29 +17,39 @@ margin_right = 883.0
 margin_bottom = 523.0
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="GUI_Info"]
-margin_left = 23.0
-margin_top = 34.0
-margin_right = 495.0
-margin_bottom = 98.0
+[node name="BaseSystemInfo" type="Label" parent="GUI_Info"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 110.0
 text = "ff"
-align = 1
+script = ExtResource( 2 )
 
-[node name="Label2" type="Label" parent="GUI_Info"]
-margin_left = 25.0
-margin_top = 125.0
-margin_right = 497.0
-margin_bottom = 189.0
+[node name="BasePerfInfo" type="Label" parent="GUI_Info"]
+margin_left = 627.0
+margin_top = 8.0
+margin_right = 1016.0
+margin_bottom = 196.0
+align = 2
+script = ExtResource( 6 )
+
+[node name="NvidiaSmiInfo" type="Label" parent="GUI_Info"]
+margin_left = 10.0
+margin_top = 120.0
+margin_right = 512.0
+margin_bottom = 184.0
 text = "ff
 kk"
+script = ExtResource( 4 )
 
-[node name="Label3" type="Label" parent="GUI_Info"]
-margin_left = 449.0
-margin_top = 123.0
-margin_right = 921.0
-margin_bottom = 187.0
+[node name="LanguageTest" type="Label" parent="GUI_Info"]
+margin_left = 539.0
+margin_top = 92.0
+margin_right = 1011.0
+margin_bottom = 431.0
 text = "ff
 kk"
+script = ExtResource( 5 )
 
 [node name="Label4" type="Label" parent="GUI_Info"]
 margin_left = 506.0
@@ -46,29 +60,22 @@ text = "ff
 kk"
 
 [node name="Button" type="Button" parent="GUI_Info"]
-margin_left = 156.0
-margin_top = 460.0
-margin_right = 286.0
-margin_bottom = 509.0
+margin_left = 17.0
+margin_top = 537.0
+margin_right = 147.0
+margin_bottom = 586.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "one"
 
 [node name="Button2" type="Button" parent="GUI_Info"]
-margin_left = 387.0
-margin_top = 457.0
-margin_right = 517.0
-margin_bottom = 506.0
+margin_left = 267.0
+margin_top = 533.0
+margin_right = 397.0
+margin_bottom = 582.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "two"
-
-[node name="Label5" type="Label" parent="GUI_Info"]
-margin_left = 627.0
-margin_top = 8.0
-margin_right = 1016.0
-margin_bottom = 196.0
-align = 2
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.940276, 0.340412, 0, -0.340412, 0.940276, 0, 2.03616, 0 )

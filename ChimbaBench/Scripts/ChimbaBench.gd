@@ -13,11 +13,17 @@
 #
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 extends Spatial
 
+var chi_project_name_and_version = "ChimbaBench 1.1 (GPLv3+)\n";
+
+
 func _ready():
+	#Engine.target_fps = 100;
 	pass;
+	
+
+
 
 #func _process(delta):
 #	pass
