@@ -10,7 +10,7 @@ Benchmark (OpenGL API).
 - Windows 7 or newer
 - Linux distributives 2013 and newer
 - Adnroid 4.4+ (ARM-v7a/ARM-v8a/x86/x86_64)
-- OpenGL/ES 3.0/2.0
+- OpenGL/ES 3.0 (OpenGL/ES 2.0 not recommended)
 
 ### License "ChimbaBench"
 ChimbaBench\
