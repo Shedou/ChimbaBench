@@ -16,12 +16,8 @@ var chi_thr1_timeout_value = 1000.0;
 var chi_loop = 1;
 var thread;
 
-var chi_OS = "";
-
-
 func _ready():
-	chi_OS = OS.get_name();
-	if chi_OS == "Windows":
+	if $"../../../".chi_OS == "Windows":
 		thread = Thread.new();
 		thread.start(self, "_thread_function");
 		#OS.execute("CMD", ["/c", "C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", "-q", "-d", "MEMORY"], true, chi_wmi_info)
@@ -43,12 +39,12 @@ func _thread_function(userdata):
 			
 
 func _process(delta):
-	
-	if chi_timeout == 0:
-		chi_timeout = 1;
-		yield(get_tree().create_timer(chi_timeout_value), "timeout");
-		text = "NVIDIA System Management Interface:" + "\nGPU Memory: " + str(chi_smi_video_mem_all[0]) + "Driver Version: " + str(chi_smi_driver_ver[0]);
-		text = text + "\nRefresh interval: " + str(chi_timeout_value) + " Sec." + "\nGPU Load: " + str(chi_smi_gpu_load[0]) + "GPU Power: " + str(chi_smi_gpu_power[0]) + "GPU Clock: " + str(chi_smi_gpu_clock[0]);
-		chi_timeout = 0;
+	if $"../../../".chi_OS == "Windows":
+		if chi_timeout == 0:
+			chi_timeout = 1;
+			yield(get_tree().create_timer(chi_timeout_value), "timeout");
+			text = "NVIDIA System Management Interface:" + "\nGPU Memory: " + str(chi_smi_video_mem_all[0]) + "Driver Version: " + str(chi_smi_driver_ver[0]);
+			text = text + "\nRefresh interval: " + str(chi_timeout_value) + " Sec." + "\nGPU Load: " + str(chi_smi_gpu_load[0]) + "GPU Power: " + str(chi_smi_gpu_power[0]) + "GPU Clock: " + str(chi_smi_gpu_clock[0]);
+			chi_timeout = 0;
 		
 	

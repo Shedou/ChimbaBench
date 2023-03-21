@@ -1,88 +1,330 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/ChimbaBench.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/BaseSystemInfo.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/GUI_Info.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/NvidiaSmiInfo.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/LanguageTest.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/BasePerfInfo.gd" type="Script" id=6]
-
-[sub_resource type="SpatialMaterial" id=1]
+[ext_resource path="res://Textures/yaica_.webp" type="Texture" id=7]
+[ext_resource path="res://default_env.tres" type="Environment" id=8]
+[ext_resource path="res://Materials/MAT4/carbo.tres" type="Material" id=9]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/LangTest.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Message.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/About.gd" type="Script" id=13]
 
 [node name="ChimbaBench" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="GUI_Info" type="Control" parent="."]
-margin_right = 883.0
-margin_bottom = 523.0
+[node name="GUI" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 10 )
+
+[node name="GUI_Info" type="Control" parent="GUI"]
+margin_right = 1024.0
+margin_bottom = 600.0
 script = ExtResource( 3 )
 
-[node name="BaseSystemInfo" type="Label" parent="GUI_Info"]
+[node name="BaseSystemInfo" type="Label" parent="GUI/GUI_Info"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 512.0
+margin_right = 502.0
 margin_bottom = 110.0
 text = "ff"
 script = ExtResource( 2 )
 
-[node name="BasePerfInfo" type="Label" parent="GUI_Info"]
-margin_left = 627.0
-margin_top = 8.0
-margin_right = 1016.0
-margin_bottom = 196.0
+[node name="BasePerfInfo" type="Label" parent="GUI/GUI_Info"]
+margin_left = 614.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 410.0
 align = 2
 script = ExtResource( 6 )
 
-[node name="NvidiaSmiInfo" type="Label" parent="GUI_Info"]
+[node name="NvidiaSmiInfo" type="Label" parent="GUI/GUI_Info"]
 margin_left = 10.0
 margin_top = 120.0
 margin_right = 512.0
 margin_bottom = 184.0
-text = "ff
-kk"
+text = "NV SMI"
 script = ExtResource( 4 )
 
-[node name="LanguageTest" type="Label" parent="GUI_Info"]
-margin_left = 539.0
-margin_top = 92.0
-margin_right = 1011.0
-margin_bottom = 431.0
-text = "ff
-kk"
+[node name="Label4" type="Label" parent="GUI/GUI_Info"]
+margin_left = 14.0
+margin_top = 469.0
+margin_right = 486.0
+margin_bottom = 533.0
+text = "ff"
+
+[node name="BTN_Settings" type="Button" parent="GUI"]
+margin_left = 10.0
+margin_top = 540.0
+margin_right = 130.0
+margin_bottom = 590.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Settings"
+
+[node name="BTN_LangTest" type="Button" parent="GUI"]
+margin_left = 140.0
+margin_top = 540.0
+margin_right = 310.0
+margin_bottom = 590.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Language Test"
+
+[node name="BTN_About" type="Button" parent="GUI"]
+margin_left = 320.0
+margin_top = 540.0
+margin_right = 460.0
+margin_bottom = 590.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "About"
+
+[node name="Settings" type="Control" parent="GUI"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
 script = ExtResource( 5 )
 
-[node name="Label4" type="Label" parent="GUI_Info"]
-margin_left = 506.0
+[node name="Background" type="ColorRect" parent="GUI/Settings"]
+margin_right = 1004.0
+margin_bottom = 580.0
+color = Color( 0.160784, 0.0745098, 0.231373, 0.45098 )
+
+[node name="BTN_Close" type="Button" parent="GUI/Settings"]
+margin_left = 10.0
 margin_top = 522.0
-margin_right = 978.0
-margin_bottom = 586.0
+margin_right = 130.0
+margin_bottom = 572.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="BTN_Save_Locale" type="Button" parent="GUI/Settings"]
+margin_left = 607.0
+margin_top = 479.0
+margin_right = 766.0
+margin_bottom = 551.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "SAVE LOCALE!"
+
+[node name="BTN_Load_Locale" type="Button" parent="GUI/Settings"]
+margin_left = 791.0
+margin_top = 479.0
+margin_right = 950.0
+margin_bottom = 551.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "LOAD LOCALE!"
+
+[node name="LangTest" type="Control" parent="GUI"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+script = ExtResource( 11 )
+
+[node name="Background" type="ColorRect" parent="GUI/LangTest"]
+margin_right = 1004.0
+margin_bottom = 580.0
+color = Color( 0.235294, 0.235294, 0.235294, 0.756863 )
+
+[node name="Background2" type="ColorRect" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 994.0
+margin_bottom = 290.0
+color = Color( 0.298039, 0.298039, 0.298039, 0.756863 )
+
+[node name="MainLangs" type="Label" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 502.0
+margin_bottom = 290.0
 text = "ff
 kk"
 
-[node name="Button" type="Button" parent="GUI_Info"]
-margin_left = 17.0
-margin_top = 537.0
-margin_right = 147.0
-margin_bottom = 586.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "one"
+[node name="OtherLangs" type="Label" parent="GUI/LangTest"]
+margin_left = 502.0
+margin_top = 10.0
+margin_right = 994.0
+margin_bottom = 290.0
 
-[node name="Button2" type="Button" parent="GUI_Info"]
-margin_left = 267.0
-margin_top = 533.0
-margin_right = 397.0
-margin_bottom = 582.0
+[node name="CurrentFont" type="Label" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 300.0
+margin_right = 994.0
+margin_bottom = 340.0
+text = "Current Font"
+align = 1
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 350.0
+margin_right = 994.0
+margin_bottom = 510.0
+text = "Paste your text here!"
+show_line_numbers = true
+draw_tabs = true
+draw_spaces = true
+
+[node name="BTN_Close" type="Button" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 522.0
+margin_right = 130.0
+margin_bottom = 572.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "two"
+text = "Close"
+
+[node name="Message" type="Control" parent="GUI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
+script = ExtResource( 12 )
+
+[node name="Background" type="ColorRect" parent="GUI/Message"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
+color = Color( 0.235294, 0.235294, 0.235294, 0.839216 )
+
+[node name="CAPT" type="Label" parent="GUI/Message"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -275.0
+margin_top = -90.0
+margin_right = 275.0
+margin_bottom = -55.0
+text = "Caption"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MSG" type="TextEdit" parent="GUI/Message"]
+margin_left = 25.0
+margin_top = 45.0
+margin_right = 575.0
+margin_bottom = 145.0
+highlight_current_line = true
+show_line_numbers = true
+virtual_keyboard_enabled = false
+smooth_scrolling = true
+
+[node name="BTN_Close" type="Button" parent="GUI/Message"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = 55.0
+margin_right = 70.0
+margin_bottom = 90.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="About" type="Control" parent="GUI"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 13 )
+
+[node name="Background" type="ColorRect" parent="GUI/About"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -502.0
+margin_top = -290.0
+margin_right = 502.0
+margin_bottom = 290.0
+color = Color( 0.235294, 0.235294, 0.235294, 0.839216 )
+
+[node name="Overclockers" type="LinkButton" parent="GUI/About"]
+margin_left = 116.0
+margin_top = 95.0
+margin_right = 462.0
+margin_bottom = 134.0
+enabled_focus_mode = 0
+text = "https://overclockers.ru/blog/Hard-Workshop"
+underline = 1
+
+[node name="GitHub" type="LinkButton" parent="GUI/About"]
+margin_left = 113.0
+margin_top = 227.0
+margin_right = 459.0
+margin_bottom = 266.0
+enabled_focus_mode = 0
+text = "https://github.com/Shedou/ChimbaBench"
+underline = 1
+
+[node name="BTN_Close" type="Button" parent="GUI/About"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = 55.0
+margin_right = 70.0
+margin_bottom = 90.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 512, 300 )
+texture = ExtResource( 7 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.940276, 0.340412, 0, -0.340412, 0.940276, 0, 2.03616, 0 )
+transform = Transform( 0.804184, -0.214316, 0.554398, 0.0632759, 0.9583, 0.278669, -0.591003, -0.189021, 0.784211, 3.21609, 4.67735, -0.500789 )
+environment = ExtResource( 8 )
+fov = 95.0
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.02607 )
-material = SubResource( 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02586, -6.02607 )
+width = 4.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 9 )
 
-[connection signal="pressed" from="GUI_Info/Button" to="GUI_Info" method="_on_Button_pressed"]
-[connection signal="pressed" from="GUI_Info/Button2" to="GUI_Info" method="_on_Button2_pressed"]
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92072, 2.70696, -0.880855 )
+shadow_enabled = true
+omni_range = 16.0
+
+[connection signal="pressed" from="GUI/BTN_Settings" to="GUI" method="_on_BTN_Settings_pressed"]
+[connection signal="pressed" from="GUI/BTN_LangTest" to="GUI" method="_on_BTN_LangTest_pressed"]
+[connection signal="pressed" from="GUI/BTN_About" to="GUI" method="_on_BTN_About_pressed"]
+[connection signal="pressed" from="GUI/Settings/BTN_Close" to="GUI/Settings" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/Settings/BTN_Save_Locale" to="GUI" method="_on_BTN_Save_Locale_pressed"]
+[connection signal="pressed" from="GUI/Settings/BTN_Load_Locale" to="GUI" method="_on_BTN_Load_Locale_pressed"]
+[connection signal="pressed" from="GUI/LangTest/BTN_Close" to="GUI/LangTest" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/About/Overclockers" to="GUI/About" method="_on_Overclockers_pressed"]
+[connection signal="pressed" from="GUI/About/GitHub" to="GUI/About" method="_on_GitHub_pressed"]
+[connection signal="pressed" from="GUI/About/BTN_Close" to="GUI/About" method="_on_BTN_Close_pressed"]

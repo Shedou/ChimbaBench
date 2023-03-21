@@ -32,4 +32,6 @@ common/enable_pause_aware_picking=true
 
 quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true
+quality/filters/anisotropic_filter_level=16
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
