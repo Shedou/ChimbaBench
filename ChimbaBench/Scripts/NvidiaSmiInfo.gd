@@ -1,6 +1,5 @@
 extends Label
 
-# NVIDIA System Management Interface variables
 var chi_smi_driver_ver = [0];
 var chi_smi_video_mem_all = [0];
 var chi_smi_gpu_load = [0];
@@ -20,10 +19,8 @@ func _ready():
 	if $"../../../".chi_OS == "Windows":
 		thread = Thread.new();
 		thread.start(self, "_thread_function");
-		#OS.execute("CMD", ["/c", "C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", "-q", "-d", "MEMORY"], true, chi_wmi_info)
 		OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=memory.total", "--format=csv,noheader"], true, chi_smi_video_mem_all, false, false);
 		OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=driver_version", "--format=csv,noheader"], true, chi_smi_driver_ver, false, false);
-		#--query-gpu=memory.total --format=csv,noheader
 	
 
 func _thread_function(userdata):
@@ -31,7 +28,6 @@ func _thread_function(userdata):
 		if chi_thr1_timeout == 0:
 			chi_thr1_timeout = 1;
 			OS.delay_msec(chi_thr1_timeout_value);
-			#yield(get_tree().create_timer(chi_thr1_timeout_value), "timeout");
 			OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=utilization.gpu", "--format=csv,noheader"], true, chi_smi_gpu_load, false, false);
 			OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=power.draw", "--format=csv,noheader"], true, chi_smi_gpu_power, false, false);
 			OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=clocks.current.graphics", "--format=csv,noheader"], true, chi_smi_gpu_clock, false, false);
@@ -43,7 +39,7 @@ func _process(delta):
 		if chi_timeout == 0:
 			chi_timeout = 1;
 			yield(get_tree().create_timer(chi_timeout_value), "timeout");
-			text = "NVIDIA System Management Interface:" + "\nGPU Memory: " + str(chi_smi_video_mem_all[0]) + "Driver Version: " + str(chi_smi_driver_ver[0]);
+			text = "- NVIDIA System Management Interface:" + "\nGPU Memory: " + str(chi_smi_video_mem_all[0]) + "Driver Version: " + str(chi_smi_driver_ver[0]);
 			text = text + "\nRefresh interval: " + str(chi_timeout_value) + " Sec." + "\nGPU Load: " + str(chi_smi_gpu_load[0]) + "GPU Power: " + str(chi_smi_gpu_power[0]) + "GPU Clock: " + str(chi_smi_gpu_clock[0]);
 			chi_timeout = 0;
 		

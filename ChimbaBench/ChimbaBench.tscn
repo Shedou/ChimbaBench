@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/ChimbaBench.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/BaseSystemInfo.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/GUI_Info.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/CSGBox.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/NvidiaSmiInfo.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/BasePerfInfo.gd" type="Script" id=6]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scripts/LangTest.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/About.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/SystemInfo.gd" type="Script" id=14]
 
 [node name="ChimbaBench" type="Spatial"]
 script = ExtResource( 1 )
@@ -25,14 +26,13 @@ script = ExtResource( 10 )
 [node name="GUI_Info" type="Control" parent="GUI"]
 margin_right = 1024.0
 margin_bottom = 600.0
-script = ExtResource( 3 )
 
 [node name="BaseSystemInfo" type="Label" parent="GUI/GUI_Info"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 502.0
 margin_bottom = 110.0
-text = "ff"
+text = "Base Sys Info"
 script = ExtResource( 2 )
 
 [node name="BasePerfInfo" type="Label" parent="GUI/GUI_Info"]
@@ -40,50 +40,106 @@ margin_left = 614.0
 margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 410.0
+text = "Base Perf Info"
 align = 2
 script = ExtResource( 6 )
 
 [node name="NvidiaSmiInfo" type="Label" parent="GUI/GUI_Info"]
 margin_left = 10.0
-margin_top = 120.0
+margin_top = 150.0
 margin_right = 512.0
-margin_bottom = 184.0
-text = "NV SMI"
+margin_bottom = 214.0
 script = ExtResource( 4 )
 
-[node name="Label4" type="Label" parent="GUI/GUI_Info"]
+[node name="DebugInfo" type="Label" parent="GUI/GUI_Info"]
 margin_left = 14.0
 margin_top = 469.0
 margin_right = 486.0
 margin_bottom = 533.0
-text = "ff"
 
-[node name="BTN_Settings" type="Button" parent="GUI"]
+[node name="Main_Controls" type="Control" parent="GUI"]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 1
+
+[node name="BTN_Settings" type="Button" parent="GUI/Main_Controls"]
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 540.0
+margin_top = -60.0
 margin_right = 130.0
-margin_bottom = 590.0
+margin_bottom = -10.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Settings"
 
-[node name="BTN_LangTest" type="Button" parent="GUI"]
-margin_left = 140.0
-margin_top = 540.0
-margin_right = 310.0
-margin_bottom = 590.0
+[node name="BTN_LangTest" type="Button" parent="GUI/Main_Controls"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 145.0
+margin_top = -60.0
+margin_right = 315.0
+margin_bottom = -10.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Language Test"
 
-[node name="BTN_About" type="Button" parent="GUI"]
-margin_left = 320.0
-margin_top = 540.0
-margin_right = 460.0
-margin_bottom = 590.0
+[node name="BTN_About" type="Button" parent="GUI/Main_Controls"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -60.0
+margin_right = -10.0
+margin_bottom = -10.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "About"
+
+[node name="BTN_SystemInfo" type="Button" parent="GUI/Main_Controls"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -324.0
+margin_top = -60.0
+margin_right = -164.0
+margin_bottom = -10.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "System Info"
+
+[node name="SystemInfo" type="Control" parent="GUI"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+script = ExtResource( 14 )
+
+[node name="Background" type="ColorRect" parent="GUI/SystemInfo"]
+margin_right = 1004.0
+margin_bottom = 580.0
+color = Color( 0, 0.0862745, 0.0431373, 0.45098 )
+
+[node name="BTN_Close" type="Button" parent="GUI/SystemInfo"]
+margin_left = 10.0
+margin_top = 522.0
+margin_right = 130.0
+margin_bottom = 572.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="BTN_Win_WMI" type="Button" parent="GUI/SystemInfo"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 190.0
+margin_bottom = 110.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "WMI Info (wmic)"
 
 [node name="Settings" type="Control" parent="GUI"]
 visible = false
@@ -108,22 +164,57 @@ enabled_focus_mode = 0
 text = "Close"
 
 [node name="BTN_Save_Locale" type="Button" parent="GUI/Settings"]
-margin_left = 607.0
-margin_top = 479.0
-margin_right = 766.0
-margin_bottom = 551.0
+margin_left = 620.0
+margin_top = 500.0
+margin_right = 780.0
+margin_bottom = 570.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "SAVE LOCALE!"
+text = "SAVE LOCALE"
 
 [node name="BTN_Load_Locale" type="Button" parent="GUI/Settings"]
-margin_left = 791.0
-margin_top = 479.0
-margin_right = 950.0
-margin_bottom = 551.0
+margin_left = 820.0
+margin_top = 500.0
+margin_right = 980.0
+margin_bottom = 570.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "LOAD LOCALE!"
+text = "LOAD LOCALE"
+
+[node name="BTN_Font_Load" type="Button" parent="GUI/Settings"]
+margin_left = 10.0
+margin_top = 100.0
+margin_right = 230.0
+margin_bottom = 150.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Apply custom font"
+
+[node name="BTN_AA" type="Button" parent="GUI/Settings"]
+margin_left = 246.0
+margin_top = 330.0
+margin_right = 366.0
+margin_bottom = 380.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Set AA"
+
+[node name="SEL_MSAA" type="OptionButton" parent="GUI/Settings"]
+margin_left = 20.0
+margin_top = 360.0
+margin_right = 220.0
+margin_bottom = 390.0
+focus_mode = 0
+enabled_focus_mode = 0
+
+[node name="SEL_Aniso" type="OptionButton" parent="GUI/Settings"]
+margin_left = 20.0
+margin_top = 320.0
+margin_right = 220.0
+margin_bottom = 350.0
+focus_mode = 0
+disabled = true
+enabled_focus_mode = 0
 
 [node name="LangTest" type="Control" parent="GUI"]
 visible = false
@@ -145,7 +236,7 @@ margin_right = 994.0
 margin_bottom = 290.0
 color = Color( 0.298039, 0.298039, 0.298039, 0.756863 )
 
-[node name="MainLangs" type="Label" parent="GUI/LangTest"]
+[node name="Langs_Main" type="Label" parent="GUI/LangTest"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 502.0
@@ -153,13 +244,13 @@ margin_bottom = 290.0
 text = "ff
 kk"
 
-[node name="OtherLangs" type="Label" parent="GUI/LangTest"]
+[node name="Langs_Other" type="Label" parent="GUI/LangTest"]
 margin_left = 502.0
 margin_top = 10.0
 margin_right = 994.0
 margin_bottom = 290.0
 
-[node name="CurrentFont" type="Label" parent="GUI/LangTest"]
+[node name="Font_Current" type="Label" parent="GUI/LangTest"]
 margin_left = 10.0
 margin_top = 300.0
 margin_right = 994.0
@@ -168,17 +259,61 @@ text = "Current Font"
 align = 1
 valign = 1
 
-[node name="TextEdit" type="TextEdit" parent="GUI/LangTest"]
+[node name="User_Text" type="TextEdit" parent="GUI/LangTest"]
 margin_left = 10.0
 margin_top = 350.0
 margin_right = 994.0
 margin_bottom = 510.0
 text = "Paste your text here!"
 show_line_numbers = true
-draw_tabs = true
-draw_spaces = true
 
 [node name="BTN_Close" type="Button" parent="GUI/LangTest"]
+margin_left = 10.0
+margin_top = 522.0
+margin_right = 130.0
+margin_bottom = 572.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="About" type="Control" parent="GUI"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 600.0
+script = ExtResource( 13 )
+
+[node name="Background" type="ColorRect" parent="GUI/About"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -502.0
+margin_top = -295.0
+margin_right = 502.0
+margin_bottom = 285.0
+color = Color( 0.235294, 0.235294, 0.235294, 0.839216 )
+
+[node name="Link_Overs" type="LinkButton" parent="GUI/About"]
+margin_left = 116.0
+margin_top = 95.0
+margin_right = 462.0
+margin_bottom = 134.0
+enabled_focus_mode = 0
+text = "https://overclockers.ru/blog/Hard-Workshop"
+underline = 1
+
+[node name="Link_GitHub" type="LinkButton" parent="GUI/About"]
+margin_left = 113.0
+margin_top = 227.0
+margin_right = 459.0
+margin_bottom = 266.0
+enabled_focus_mode = 0
+text = "https://github.com/Shedou/ChimbaBench"
+underline = 1
+
+[node name="BTN_Close" type="Button" parent="GUI/About"]
 margin_left = 10.0
 margin_top = 522.0
 margin_right = 130.0
@@ -193,10 +328,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 300.0
-margin_bottom = 100.0
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+margin_bottom = 200.0
 script = ExtResource( 12 )
 
 [node name="Background" type="ColorRect" parent="GUI/Message"]
@@ -204,93 +339,47 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 300.0
-margin_bottom = 100.0
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+margin_bottom = 200.0
 color = Color( 0.235294, 0.235294, 0.235294, 0.839216 )
 
 [node name="CAPT" type="Label" parent="GUI/Message"]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -275.0
-margin_top = -90.0
-margin_right = 275.0
-margin_bottom = -55.0
+margin_left = -400.0
+margin_right = 400.0
+margin_bottom = 35.0
 text = "Caption"
 align = 1
 valign = 1
 autowrap = true
 
 [node name="MSG" type="TextEdit" parent="GUI/Message"]
-margin_left = 25.0
-margin_top = 45.0
-margin_right = 575.0
-margin_bottom = 145.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -390.0
+margin_top = -160.0
+margin_right = 390.0
+margin_bottom = 140.0
 highlight_current_line = true
-show_line_numbers = true
 virtual_keyboard_enabled = false
 smooth_scrolling = true
+v_scroll_speed = 64.0
+wrap_enabled = true
 
 [node name="BTN_Close" type="Button" parent="GUI/Message"]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 margin_left = -70.0
-margin_top = 55.0
+margin_top = -45.0
 margin_right = 70.0
-margin_bottom = 90.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Close"
-
-[node name="About" type="Control" parent="GUI"]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
-script = ExtResource( 13 )
-
-[node name="Background" type="ColorRect" parent="GUI/About"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -502.0
-margin_top = -290.0
-margin_right = 502.0
-margin_bottom = 290.0
-color = Color( 0.235294, 0.235294, 0.235294, 0.839216 )
-
-[node name="Overclockers" type="LinkButton" parent="GUI/About"]
-margin_left = 116.0
-margin_top = 95.0
-margin_right = 462.0
-margin_bottom = 134.0
-enabled_focus_mode = 0
-text = "https://overclockers.ru/blog/Hard-Workshop"
-underline = 1
-
-[node name="GitHub" type="LinkButton" parent="GUI/About"]
-margin_left = 113.0
-margin_top = 227.0
-margin_right = 459.0
-margin_bottom = 266.0
-enabled_focus_mode = 0
-text = "https://github.com/Shedou/ChimbaBench"
-underline = 1
-
-[node name="BTN_Close" type="Button" parent="GUI/About"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = 55.0
-margin_right = 70.0
-margin_bottom = 90.0
+margin_bottom = -10.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Close"
@@ -301,7 +390,7 @@ position = Vector2( 512, 300 )
 texture = ExtResource( 7 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.804184, -0.214316, 0.554398, 0.0632759, 0.9583, 0.278669, -0.591003, -0.189021, 0.784211, 3.21609, 4.67735, -0.500789 )
+transform = Transform( 0.804184, -0.214316, 0.554398, 0.0632759, 0.9583, 0.278669, -0.591003, -0.189021, 0.784211, 3.28783, 4.41466, -1.91392 )
 environment = ExtResource( 8 )
 fov = 95.0
 
@@ -311,20 +400,44 @@ width = 4.0
 height = 4.0
 depth = 4.0
 material = ExtResource( 9 )
+script = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 0.930424, 0, 0.366485, 0, 1, 0, -0.366485, 0, 0.930424, 5.84295, 2.91061, -6.39204 )
+width = 4.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 9 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92072, 2.70696, -0.880855 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14837, -0.173981, -0.0649374 )
 shadow_enabled = true
 omni_range = 16.0
 
-[connection signal="pressed" from="GUI/BTN_Settings" to="GUI" method="_on_BTN_Settings_pressed"]
-[connection signal="pressed" from="GUI/BTN_LangTest" to="GUI" method="_on_BTN_LangTest_pressed"]
-[connection signal="pressed" from="GUI/BTN_About" to="GUI" method="_on_BTN_About_pressed"]
+[node name="OmniLight3" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17498, -0.173981, -10.0975 )
+shadow_enabled = true
+omni_range = 16.0
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23323, 5.06924, -8.28037 )
+shadow_enabled = true
+omni_range = 16.0
+
+[connection signal="pressed" from="GUI/Main_Controls/BTN_Settings" to="GUI" method="_on_BTN_Settings_pressed"]
+[connection signal="pressed" from="GUI/Main_Controls/BTN_LangTest" to="GUI" method="_on_BTN_LangTest_pressed"]
+[connection signal="pressed" from="GUI/Main_Controls/BTN_About" to="GUI" method="_on_BTN_About_pressed"]
+[connection signal="pressed" from="GUI/Main_Controls/BTN_SystemInfo" to="GUI" method="_on_BTN_SystemInfo_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/BTN_Close" to="GUI/SystemInfo" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/BTN_Win_WMI" to="GUI/SystemInfo" method="_on_BTN_Win_WMI_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Close" to="GUI/Settings" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Save_Locale" to="GUI" method="_on_BTN_Save_Locale_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Load_Locale" to="GUI" method="_on_BTN_Load_Locale_pressed"]
+[connection signal="pressed" from="GUI/Settings/BTN_Font_Load" to="GUI/Settings" method="_on_BTN_Font_Load_pressed"]
+[connection signal="item_selected" from="GUI/Settings/SEL_MSAA" to="GUI/Settings" method="_on_SEL_MSAA_item_selected"]
+[connection signal="item_selected" from="GUI/Settings/SEL_Aniso" to="GUI/Settings" method="_on_SEL_Aniso_item_selected"]
 [connection signal="pressed" from="GUI/LangTest/BTN_Close" to="GUI/LangTest" method="_on_BTN_Close_pressed"]
-[connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]
-[connection signal="pressed" from="GUI/About/Overclockers" to="GUI/About" method="_on_Overclockers_pressed"]
-[connection signal="pressed" from="GUI/About/GitHub" to="GUI/About" method="_on_GitHub_pressed"]
+[connection signal="pressed" from="GUI/About/Link_Overs" to="GUI/About" method="_on_Link_Overs_pressed"]
+[connection signal="pressed" from="GUI/About/Link_GitHub" to="GUI/About" method="_on_Link_GitHub_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_Close" to="GUI/About" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]

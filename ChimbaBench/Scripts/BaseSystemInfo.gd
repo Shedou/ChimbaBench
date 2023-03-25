@@ -4,7 +4,6 @@ var chi_project_name;
 var chi_font_sysinfo = DynamicFont.new();
 
 var chi_gpu_name;
-var chi_wmi_info;
 var chi_driverOGL;
 
 
