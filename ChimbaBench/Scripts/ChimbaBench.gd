@@ -15,9 +15,9 @@
 #along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends Spatial
 
-var chi_project_name_and_version = "ChimbaBench 1.3 (GPLv3+)\n";
 var chi_executable_dir = OS.get_executable_path().get_base_dir();
 var chi_OS = OS.get_name();
+var chi_smi_enabled = 0;
 
 var chi_elements_gui = {
 	"node" : "/root/ChimbaBench/GUI"
@@ -28,22 +28,21 @@ var chi_elements_gui_controls = {
 	"btn_langtest" : "/root/ChimbaBench/GUI/Main_Controls/BTN_LangTest",
 	"btn_about" : "/root/ChimbaBench/GUI/Main_Controls/BTN_About",
 	"btn_systeminfo" : "/root/ChimbaBench/GUI/Main_Controls/BTN_SystemInfo",
+	"btn_sbox" : "/root/ChimbaBench/GUI/Main_Controls/BTN_SBox",
 };
 var chi_elements_gui_info = {
 	"node" : "/root/ChimbaBench/GUI/GUI_Info",
-	"base_system" : "/root/ChimbaBench/GUI/GUI_Info/BaseSystemInfo",
-	"base_perf" : "/root/ChimbaBench/GUI/GUI_Info/BasePerfInfo",
 	"nvidia_smi" : "/root/ChimbaBench/GUI/GUI_Info/NvidiaSmiInfo"
 };
 var chi_elements_gui_settings = {
 	"node" : "/root/ChimbaBench/GUI/Settings",
 	"btn_close" : "/root/ChimbaBench/GUI/Settings/BTN_Close",
-	"btn_save_locale" : "/root/ChimbaBench/GUI/Settings/BTN_Save_Locale",
-	"btn_load_locale" : "/root/ChimbaBench/GUI/Settings/BTN_Load_Locale",
-	"btn_font_load" : "/root/ChimbaBench/GUI/Settings/BTN_Font_Load",
-	"btn_aa" : "/root/ChimbaBench/GUI/Settings/BTN_AA",
+	"btn_save" : "/root/ChimbaBench/GUI/Settings/BTN_Save",
+	"btn_aa" : "/root/ChimbaBench/GUI/Settings/BTN_SelectFont",
 	"btn_sel_msaa" : "/root/ChimbaBench/GUI/Settings/SEL_MSAA",
-	"btn_sel_aniso" : "/root/ChimbaBench/GUI/Settings/SEL_Aniso"
+	"btn_sel_aniso" : "/root/ChimbaBench/GUI/Settings/SEL_Aniso",
+	"btn_sel_resolution" : "/root/ChimbaBench/GUI/Settings/SEL_resolution",
+	"btn_check_fullscreen" : "/root/ChimbaBench/GUI/Settings/CHECK_Fullscreen"
 };
 var chi_elements_gui_langtest = {
 	"node" : "/root/ChimbaBench/GUI/LangTest",
@@ -56,8 +55,7 @@ var chi_elements_gui_langtest = {
 var chi_elements_gui_about = {
 	"node" : "/root/ChimbaBench/GUI/About",
 	"btn_close" : "/root/ChimbaBench/GUI/About/BTN_Close",
-	"overs" : "/root/ChimbaBench/GUI/About/Link_Overs",
-	"github" : "/root/ChimbaBench/GUI/About/Link_GitHub"
+	"btn_txt_about" : "/root/ChimbaBench/GUI/About/TextAbout"
 };
 var chi_elements_system_info = {
 	"node" : "/root/ChimbaBench/GUI/SystemInfo",
@@ -72,8 +70,18 @@ var chi_elements_gui_message = {
 };
 
 func _ready():
-	#Engine.target_fps = 100;
-	pass;
+	Engine.target_fps = 120;
+	chi_resize();
+
+func chi_resize():
+	$GUI.on_resize();
+	$GUI/Main_Controls.on_resize();
+	$GUI/SystemInfo.on_resize();
+	$GUI/Settings.on_resize();
+	$GUI/LangTest.on_resize();
+	$GUI/About.on_resize();
+	$GUI/Message.on_resize();
+	$GUI/Settings.chi_settings_load_from_file();
 
 func chi_show_message(message = "Warning!", caption = "Warning!"):
 	if get_node(chi_elements_gui_message["node"]).visible == true:

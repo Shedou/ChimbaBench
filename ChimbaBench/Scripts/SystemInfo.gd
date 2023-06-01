@@ -1,11 +1,32 @@
 extends Control
 
+var chi_render_size = Vector2(0,0);
+
 var chi_wmi_info = [""];
 var chi_wmi_info_output = "";
 
 func _ready():
+	get_tree().get_root().connect("size_changed", self, "on_resize");
 	if $"/root/ChimbaBench".chi_OS != "Windows":
 		$BTN_Win_WMI.disabled = true;
+	
+func on_resize():
+	adaptive_buttons();
+
+func adaptive_buttons():
+	chi_render_size = OS.get_window_safe_area().size;
+	rect_size = chi_render_size;
+	$Background.rect_size.x = chi_render_size.x - 20;
+	$Background.rect_size.y = chi_render_size.y - 20;
+	$Background.rect_position = Vector2(10, 10);
+	
+	$BTN_Close.rect_size.x = chi_render_size.x / 8;
+	$BTN_Close.rect_size.y = $BTN_Close.rect_size.x / 3;
+	$BTN_Close.rect_position = Vector2(20, (chi_render_size.y - 20) - $BTN_Close.rect_size.y);
+	
+	$BTN_Win_WMI.rect_size.x = chi_render_size.x / 5;
+	$BTN_Win_WMI.rect_size.y = $BTN_Win_WMI.rect_size.x / 4;
+	$BTN_Win_WMI.rect_position = Vector2(20, 20);
 
 func _on_BTN_Close_pressed():
 	visible = false;

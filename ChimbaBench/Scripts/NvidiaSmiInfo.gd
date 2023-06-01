@@ -16,7 +16,7 @@ var chi_loop = 1;
 var thread;
 
 func _ready():
-	if $"../../../".chi_OS == "Windows":
+	if $"../../../".chi_OS == "Windows" and $"../../../".chi_smi_enabled == 1:
 		thread = Thread.new();
 		thread.start(self, "_thread_function");
 		OS.execute("C:\\Program Files\\NVIDIA Corporation\\NVSMI\\nvidia-smi.exe", ["--query-gpu=memory.total", "--format=csv,noheader"], true, chi_smi_video_mem_all, false, false);
@@ -35,7 +35,7 @@ func _thread_function(userdata):
 			
 
 func _process(delta):
-	if $"../../../".chi_OS == "Windows":
+	if $"../../../".chi_OS == "Windows" and $"../../../".chi_smi_enabled == 1:
 		if chi_timeout == 0:
 			chi_timeout = 1;
 			yield(get_tree().create_timer(chi_timeout_value), "timeout");
