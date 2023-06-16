@@ -1,4 +1,4 @@
-# ChimbaBench
+# ChimbaBench [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/total.svg)](https://github.com/Shedou/ChimbaBench/releases)
 
 ## Описание
 Портативный тест производительности основанный на игровом движке Godot Engine 3.5.
@@ -10,8 +10,9 @@
 | ![Screenshot_44](https://github.com/Shedou/ChimbaBench/assets/19572158/62e3ba50-f7b5-4e0f-888c-785c50d55f0d) | ![Screenshot_45~](https://github.com/Shedou/ChimbaBench/assets/19572158/3a46f328-8acb-4bda-8369-de66b3640e1a) |
 
 ## Загрузки
-### Текущая версия: [ChimbaBench v2.0](https://github.com/Shedou/ChimbaBench/releases/tag/v20) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v20/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v20)
+### Текущая версия: [ChimbaBench v2.1](https://github.com/Shedou/ChimbaBench/releases/tag/v21) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v21/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v21)
 #### Предыдущие версии:
+- [ChimbaBench v2.0](https://github.com/Shedou/ChimbaBench/releases/tag/v20)
 - [ChimbaBench v1.3](https://github.com/Shedou/ChimbaBench/releases/tag/v1.3)
 - [ChimbaBench v1.2](https://github.com/Shedou/ChimbaBench/releases/tag/v1.2)
 - [ChimbaBench v1.1](https://github.com/Shedou/ChimbaBench/releases/tag/v1.1)
@@ -21,10 +22,6 @@
 - Windows 7 и новее
 - Linux дистрибутивы 2013 года и новее
 - OpenGL/ES 3.0
-
-Поддержка с низким приоритетом:
-
-- Adnroid 4.4+ (ARM-v7a/ARM-v8a/x86/x86_64)
 
 ## License "ChimbaBench"
 ChimbaBench\
