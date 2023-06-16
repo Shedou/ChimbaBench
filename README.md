@@ -3,11 +3,11 @@
 ## Описание
 Портативный тест производительности основанный на игровом движке Godot Engine 3.5.
 
-**ChimbaBench v2.0:**
+**ChimbaBench v2.1:**
 
-|||
-|---|---|
-| ![Screenshot_44](https://github.com/Shedou/ChimbaBench/assets/19572158/62e3ba50-f7b5-4e0f-888c-785c50d55f0d) | ![Screenshot_45~](https://github.com/Shedou/ChimbaBench/assets/19572158/3a46f328-8acb-4bda-8369-de66b3640e1a) |
+||||
+|---|---|---|
+| ![6~](https://github.com/Shedou/ChimbaBench/assets/19572158/28d0560b-177b-46e7-a15f-ffdeb9aaa553) | ![1~](https://github.com/Shedou/ChimbaBench/assets/19572158/1c00c275-6e72-43f7-bd37-a957667d35ce) | ![7~](https://github.com/Shedou/ChimbaBench/assets/19572158/44852049-7488-4c4c-b72b-d43850b386e1) |
 
 ## Загрузки
 ### Текущая версия: [ChimbaBench v2.1](https://github.com/Shedou/ChimbaBench/releases/tag/v21) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v21/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v21)
