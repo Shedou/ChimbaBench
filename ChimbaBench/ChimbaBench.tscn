@@ -131,6 +131,7 @@ enabled_focus_mode = 0
 text = "Exit"
 
 [node name="SystemInfo" type="Control" parent="GUI"]
+visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
 script = ExtResource( 14 )
@@ -156,6 +157,7 @@ enabled_focus_mode = 0
 text = "WMI Info (wmic)"
 
 [node name="Lin" type="Control" parent="GUI/SystemInfo"]
+visible = false
 margin_right = 1276.0
 margin_bottom = 719.0
 script = ExtResource( 18 )
@@ -488,7 +490,6 @@ readonly = true
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
-scroll_vertical = 3.0
 
 [node name="Message" type="Control" parent="GUI"]
 visible = false
