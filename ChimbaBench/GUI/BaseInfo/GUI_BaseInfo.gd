@@ -3,7 +3,7 @@ extends Control
 export var more_info : bool = false;
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
-var chi_project_name_and_version = "ChimbaBench 2.0 (GPLv3+)\n";
+var chi_project_name_and_version = "ChimbaBench 2.1 (GPLv3+)\n";
 var chi_font = {"main":0, "small":0,
 	"size_main_s":24, "size_main_m":32, "size_main_l":44,
 	"size_small_s":20, "size_small_m":24, "size_small_l":32,

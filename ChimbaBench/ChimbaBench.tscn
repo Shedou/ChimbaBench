@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/ChimbaBench.gd" type="Script" id=1]
 [ext_resource path="res://GUI/BaseInfo/GUI_BaseInfo.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Scripts/SystemInfo.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/BTN_SBox.gd" type="Script" id=15]
 [ext_resource path="res://Textures/git_hover.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/SysInfo/Win.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/SysInfo/Lin.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.501961, 0.501961, 0.501961, 1 )
@@ -115,25 +117,36 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "System Info"
 
+[node name="BTN_Exit" type="Button" parent="GUI/Main_Controls"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -581.0
+margin_top = -63.0
+margin_right = -441.0
+margin_bottom = -13.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Exit"
+
 [node name="SystemInfo" type="Control" parent="GUI"]
-visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
 script = ExtResource( 14 )
 
 [node name="Background" type="ColorRect" parent="GUI/SystemInfo"]
-color = Color( 0, 0.0862745, 0.0431373, 0.45098 )
+margin_right = 1267.0
+margin_bottom = 715.0
+color = Color( 0, 0.0862745, 0.0431373, 0.886275 )
 
-[node name="BTN_Close" type="Button" parent="GUI/SystemInfo"]
-margin_left = 10.0
-margin_top = 522.0
-margin_right = 130.0
-margin_bottom = 572.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Close"
+[node name="Win" type="Control" parent="GUI/SystemInfo"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 17 )
 
-[node name="BTN_Win_WMI" type="Button" parent="GUI/SystemInfo"]
+[node name="BTN_Win_WMI" type="Button" parent="GUI/SystemInfo/Win"]
 margin_left = 10.0
 margin_top = 60.0
 margin_right = 190.0
@@ -141,6 +154,109 @@ margin_bottom = 110.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "WMI Info (wmic)"
+
+[node name="Lin" type="Control" parent="GUI/SystemInfo"]
+margin_right = 1276.0
+margin_bottom = 719.0
+script = ExtResource( 18 )
+
+[node name="Portable" type="Label" parent="GUI/SystemInfo/Lin"]
+margin_left = 15.0
+margin_top = 9.0
+margin_right = 433.0
+margin_bottom = 51.0
+text = " Portable"
+valign = 1
+
+[node name="System" type="Label" parent="GUI/SystemInfo/Lin"]
+margin_left = 823.0
+margin_top = 11.0
+margin_right = 1254.0
+margin_bottom = 53.0
+text = "System "
+align = 2
+valign = 1
+
+[node name="BTN_NeoFetch" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 20.0
+margin_top = 48.0
+margin_right = 200.0
+margin_bottom = 98.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "NeoFetch Info"
+
+[node name="BTN_dmidecode35" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 242.0
+margin_top = 50.0
+margin_right = 422.0
+margin_bottom = 100.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "DMI Decode v3.5"
+
+[node name="BTN_biosdecode35" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 242.0
+margin_top = 121.0
+margin_right = 422.0
+margin_bottom = 171.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "BIOS Decode v3.5"
+
+[node name="BTN_vpddecode35" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 241.0
+margin_top = 192.0
+margin_right = 421.0
+margin_bottom = 242.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "VPD Decode v3.5"
+
+[node name="BTN_lscpu" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 1050.0
+margin_top = 55.0
+margin_right = 1230.0
+margin_bottom = 105.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "CPU Info (lscpu)"
+
+[node name="BTN_proc_cpu" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 1049.0
+margin_top = 121.0
+margin_right = 1229.0
+margin_bottom = 171.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "CPU Info (cpuinfo)"
+
+[node name="BTN_lsusb" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 1047.0
+margin_top = 189.0
+margin_right = 1227.0
+margin_bottom = 239.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "USB Info (lsusb)"
+
+[node name="BTN_lspci" type="Button" parent="GUI/SystemInfo/Lin"]
+margin_left = 1045.0
+margin_top = 258.0
+margin_right = 1225.0
+margin_bottom = 308.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "PCI Info (lspci)"
+
+[node name="BTN_Close" type="Button" parent="GUI/SystemInfo"]
+margin_left = 83.0
+margin_top = 596.0
+margin_right = 203.0
+margin_bottom = 646.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
 
 [node name="Settings" type="Control" parent="GUI"]
 visible = false
@@ -163,10 +279,10 @@ enabled_focus_mode = 0
 text = "Close"
 
 [node name="BTN_Save" type="Button" parent="GUI/Settings"]
-margin_left = 818.0
-margin_top = 91.0
-margin_right = 978.0
-margin_bottom = 161.0
+margin_left = 144.0
+margin_top = 524.0
+margin_right = 304.0
+margin_bottom = 572.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Save Settings"
@@ -330,25 +446,49 @@ enabled_focus_mode = 0
 text = "Close"
 
 [node name="TextAbout" type="TextEdit" parent="GUI/About"]
-margin_left = 397.0
-margin_top = 52.0
-margin_right = 1099.0
-margin_bottom = 604.0
-text = " Attention! It is not recommended to compare the results obtained in different versions of Chimbabench, the results may differ.
+margin_left = 460.0
+margin_top = 15.0
+margin_right = 1000.0
+margin_bottom = 567.0
+text = " Attention! It is not recommended to compare 
+ the results of different versions of 
+ ChimbaBench. Results may vary.
+
+ Additional utilities used in the project can 
+ be found in the \"Tools_Linux\" folder.
+
+- DMI Decode (BIOS Decode, VPD Decode):
+- https://dmidecode.nongnu.org
+
+- NeoFetch 7.10:
+- https://github.com/dylanaraps/neofetch
 
  ChimbaBench
  Copyright (C) 2023 Chimbal
 
- This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+ This program is free software: you can 
+ redistribute it  and/or modify it under the 
+ terms of the GNU General Public  License as 
+ published by the Free Software Foundation, 
+ either version 3 of the License, or any later 
+ version.
 
- This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ This program is distributed in the hope that 
+ it will be useful, but WITHOUT ANY WARRANTY; 
+ without even the implied warranty of 
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR 
+ PURPOSE.  See the GNU General Public License 
+ for more details.
 
- You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>."
+ You should have received a copy of the
+ GNU General Public License along with
+ this program. If not, see 
+ <https://www.gnu.org/licenses/>."
 readonly = true
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
-wrap_enabled = true
+scroll_vertical = 3.0
 
 [node name="Message" type="Control" parent="GUI"]
 visible = false
@@ -374,10 +514,14 @@ autowrap = true
 margin_top = 36.0
 margin_right = 800.0
 margin_bottom = 340.0
+readonly = true
 virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
 smooth_scrolling = true
 v_scroll_speed = 64.0
 wrap_enabled = true
+minimap_draw = true
+caret_moving_by_right_click = false
 
 [node name="BTN_Close" type="Button" parent="GUI/Message"]
 margin_left = 350.0
@@ -387,6 +531,15 @@ margin_bottom = 419.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Close"
+
+[node name="BTN_Save" type="Button" parent="GUI/Message"]
+margin_left = 350.0
+margin_top = 346.0
+margin_right = 517.0
+margin_bottom = 419.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Save to file"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -401,8 +554,17 @@ fov = 95.0
 [connection signal="pressed" from="GUI/Main_Controls/BTN_LangTest" to="GUI" method="_on_BTN_LangTest_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_About" to="GUI" method="_on_BTN_About_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_SystemInfo" to="GUI" method="_on_BTN_SystemInfo_pressed"]
+[connection signal="pressed" from="GUI/Main_Controls/BTN_Exit" to="GUI/Main_Controls" method="_on_BTN_Exit_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Win/BTN_Win_WMI" to="GUI/SystemInfo/Win" method="_on_BTN_Win_WMI_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_NeoFetch" to="GUI/SystemInfo/Lin" method="_on_BTN_NeoFetch_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_dmidecode35" to="GUI/SystemInfo/Lin" method="_on_BTN_dmidecode35_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_biosdecode35" to="GUI/SystemInfo/Lin" method="_on_BTN_biosdecode35_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_vpddecode35" to="GUI/SystemInfo/Lin" method="_on_BTN_vpddecode35_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_lscpu" to="GUI/SystemInfo/Lin" method="_on_BTN_lscpu_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_proc_cpu" to="GUI/SystemInfo/Lin" method="_on_BTN_proc_cpu_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_lsusb" to="GUI/SystemInfo/Lin" method="_on_BTN_lsusb_pressed"]
+[connection signal="pressed" from="GUI/SystemInfo/Lin/BTN_lspci" to="GUI/SystemInfo/Lin" method="_on_BTN_lspci_pressed"]
 [connection signal="pressed" from="GUI/SystemInfo/BTN_Close" to="GUI/SystemInfo" method="_on_BTN_Close_pressed"]
-[connection signal="pressed" from="GUI/SystemInfo/BTN_Win_WMI" to="GUI/SystemInfo" method="_on_BTN_Win_WMI_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Close" to="GUI/Settings" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Save" to="GUI/Settings" method="_on_BTN_Save_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_SelectFont" to="GUI/Settings" method="_on_BTN_SelectFont_pressed"]
@@ -416,3 +578,4 @@ fov = 95.0
 [connection signal="pressed" from="GUI/About/Link_Git" to="GUI/About" method="_on_Link_Git_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_Close" to="GUI/About" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/Message/BTN_Save" to="GUI/Message" method="_on_BTN_Save_pressed"]

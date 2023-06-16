@@ -63,8 +63,8 @@ func adaptive_buttons():
 	$BTN_SelectFont.rect_position = Vector2(chi_render_size.x - 20 - $BTN_SelectFont.rect_size.x, 20);
 	
 	$BTN_Save.rect_size.x = chi_render_size.x / 6;
-	$BTN_Save.rect_size.y = $BTN_Save.rect_size.x / 3;
-	$BTN_Save.rect_position = Vector2(chi_render_size.x - 20 - $BTN_Save.rect_size.x, $BTN_SelectFont.rect_size.y + 40);
+	$BTN_Save.rect_size.y = $BTN_Save.rect_size.x / 4;
+	$BTN_Save.rect_position = Vector2(30 + $BTN_Close.rect_size.x, (chi_render_size.y - 20) - $BTN_Save.rect_size.y);
 	
 func chi_settings_save_to_file():
 	if not chi_sett_d.dir_exists(chi_sett_dir):
@@ -89,7 +89,6 @@ func chi_settings_load_from_file():
 			_on_SEL_MSAA_item_selected(chi_sett.get_value("Main", "MSAA"));
 			chi_screen_set(chi_sett.get_value("Main", "Fullscreen"), chi_sett.get_value("Main", "Resolution"));
 			$SEL_resolution.select($SEL_resolution.get_item_id(chi_resolution));
-			
 
 func set_settings_msaa():
 	$SEL_MSAA.add_item("MSAA Disable", 0);
@@ -100,7 +99,7 @@ func set_settings_msaa():
 	$SEL_MSAA.add_item("MSAA AVR 2x", 5);
 	$SEL_MSAA.add_item("MSAA AVR 4x", 6);
 	$SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
-	
+
 func set_settings_fxaa():
 	pass
 
@@ -211,7 +210,8 @@ var chi_resols = {
 
 func _on_SEL_resolution_item_selected(index):
 	if chi_resol_fullscreen == false and chi_desktop_size.x >= chi_resols[$SEL_resolution.get_item_id(index)] and chi_desktop_size.y >= chi_resols[$SEL_resolution.get_item_id(index)+100]:
-		OS.set_window_size(Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]));
+		#OS.set_window_size(Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]));
+		OS.window_size = Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]);
 		OS.set_window_fullscreen(true);
 		OS.set_window_fullscreen(false);
 		chi_resolution = index;

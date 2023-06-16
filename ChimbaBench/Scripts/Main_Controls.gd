@@ -29,3 +29,11 @@ func adaptive_buttons():
 	$BTN_LangTest.rect_size.x = chi_render_size.x / 8;
 	$BTN_LangTest.rect_size.y = $BTN_LangTest.rect_size.x / 3;
 	$BTN_LangTest.rect_position = Vector2((20 + $BTN_Settings.rect_size.x), (chi_render_size.y - 10) - $BTN_LangTest.rect_size.y);
+	
+	$BTN_Exit.rect_size.x = chi_render_size.x / 8;
+	$BTN_Exit.rect_size.y = $BTN_Exit.rect_size.x / 3;
+	$BTN_Exit.rect_position = Vector2(((chi_render_size.x / 2) - ($BTN_Exit.rect_size.x / 2)), chi_render_size.y - 10 - $BTN_Exit.rect_size.y);
+
+
+func _on_BTN_Exit_pressed():
+	get_tree().quit();

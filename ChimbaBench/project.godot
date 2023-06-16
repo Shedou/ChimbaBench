@@ -26,6 +26,7 @@ window/vsync/use_vsync=false
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://Default_theme.tres"
 
 [physics]
 

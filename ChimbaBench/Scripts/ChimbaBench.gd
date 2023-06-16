@@ -29,6 +29,7 @@ var chi_elements_gui_controls = {
 	"btn_about" : "/root/ChimbaBench/GUI/Main_Controls/BTN_About",
 	"btn_systeminfo" : "/root/ChimbaBench/GUI/Main_Controls/BTN_SystemInfo",
 	"btn_sbox" : "/root/ChimbaBench/GUI/Main_Controls/BTN_SBox",
+	"btn_exit" : "/root/ChimbaBench/GUI/Main_Controls/BTN_Exit",
 };
 var chi_elements_gui_info = {
 	"node" : "/root/ChimbaBench/GUI/GUI_Info",
@@ -60,11 +61,22 @@ var chi_elements_gui_about = {
 var chi_elements_system_info = {
 	"node" : "/root/ChimbaBench/GUI/SystemInfo",
 	"btn_close" : "/root/ChimbaBench/GUI/SystemInfo/BTN_Close",
-	"btn_win_wmi" : "/root/ChimbaBench/GUI/SystemInfo/BTN_Win_WMI"
+	"btn_win_wmi" : "/root/ChimbaBench/GUI/SystemInfo/Win/BTN_Win_WMI",
+	"btn_Lin_neo" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_NeoFetch",
+	"btn_Lin_dmi" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_dmidecode35",
+	"btn_Lin_dmi_bios" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_biosdecode35",
+	"btn_Lin_dmi_vpd" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_vpddecode35",
+	"btn_Lin_lscpu" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_lscpu",
+	"btn_Lin_proc_cpu" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_proc_cpu",
+	"btn_Lin_lsusb" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_lsusb",
+	"btn_Lin_lspci" : "/root/ChimbaBench/GUI/SystemInfo/Lin/BTN_lspci",
+	"text_portable" : "/root/ChimbaBench/GUI/SystemInfo/Lin/Portable",
+	"text_system" : "/root/ChimbaBench/GUI/SystemInfo/Lin/System"
 };
 var chi_elements_gui_message = {
 	"node" : "/root/ChimbaBench/GUI/Message",
 	"btn_close" : "/root/ChimbaBench/GUI/Message/BTN_Close",
+	"btn_save" : "/root/ChimbaBench/GUI/Message/BTN_Save",
 	"capt" : "/root/ChimbaBench/GUI/Message/CAPT",
 	"msg" : "/root/ChimbaBench/GUI/Message/MSG"
 };

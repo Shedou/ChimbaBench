@@ -34,8 +34,13 @@ func chi_adaptive():
 	
 	$BTN_Close.rect_size.x = chi_render_size.x / 8;
 	$BTN_Close.rect_size.y = $BTN_Close.rect_size.x / 3;
-	$BTN_Close.rect_position.x = (chi_render_size.x / 10) - ($BTN_Close.rect_size.x / 2);
+	$BTN_Close.rect_position.x = chi_m2 + 10;
 	$BTN_Close.rect_position.y = chi_render_size.y - chi_m3 - $BTN_Close.rect_size.y;
+	
+	$BTN_Save.rect_size.x = chi_render_size.x / 8;
+	$BTN_Save.rect_size.y = $BTN_Save.rect_size.x / 3;
+	$BTN_Save.rect_position.x = chi_render_size.x - chi_m2 - 10 - $BTN_Save.rect_size.x;
+	$BTN_Save.rect_position.y = chi_render_size.y - chi_m3 - $BTN_Save.rect_size.y;
 	
 	$MSG.margin_left = chi_m3;
 	$MSG.margin_top = $CAPT.margin_bottom;
@@ -45,3 +50,22 @@ func chi_adaptive():
 
 func _on_BTN_Close_pressed():
 	visible = false;
+
+
+func _on_BTN_Save_pressed():
+	var chi_file = File.new();
+	var chi_dir = Directory.new();
+	
+	var datetime = str(Time.get_datetime_string_from_system(false, true));
+	
+	var chi_exe = $"../..".chi_executable_dir;
+	var chi_path = chi_exe + "/Saved_Info";
+	var chi_full_path = chi_path + "/" + $CAPT.text + " - " + datetime + ".txt";
+	if not chi_dir.dir_exists(chi_path):
+		chi_dir.open(chi_exe);
+		chi_dir.make_dir("Saved_Info");
+	
+	chi_file.open(chi_full_path, chi_file.WRITE);
+	chi_file.store_string($MSG.text);
+	chi_file.close();
+	$MSG.text += "Output file: " + chi_full_path;
