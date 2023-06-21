@@ -20,7 +20,7 @@
 
 ## Системные требования:
 - Windows 7 и новее
-- Linux дистрибутивы 2013 года и новее
+- Linux дистрибутивы 2013 года и новее (requires GLIBC 2.17 or later)
 - OpenGL/ES 3.0
 
 ## License "ChimbaBench"
