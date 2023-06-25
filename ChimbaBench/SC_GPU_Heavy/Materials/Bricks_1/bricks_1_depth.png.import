@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/bricks_1_depth.png-701e850cee1a3b78f431f074163256ba.s3tc.stex"
+path.etc2="res://.import/bricks_1_depth.png-701e850cee1a3b78f431f074163256ba.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://SC_GPU_Heavy/Materials/Bricks_1/bricks_1_depth.png"
+dest_files=[ "res://.import/bricks_1_depth.png-701e850cee1a3b78f431f074163256ba.s3tc.stex", "res://.import/bricks_1_depth.png-701e850cee1a3b78f431f074163256ba.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

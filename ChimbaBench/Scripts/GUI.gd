@@ -10,18 +10,20 @@ var chi_localization = ConfigFile.new();
 
 var chi_exe_directory;
 
-var chi_render_size = {"x":0, "y":0};
-var chi_font = { "size_main_s": 22, "size_main_m": 32, "size_main_l": 42,
-	"size_small_s": 18, "size_small_m": 24, "size_small_l": 32,
-	"outline_s":2, "outline_m":3, "outline_l":4
-	};
+var chi_font = { "outline_s":2, "outline_m":3, "outline_l":4 };
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
 
+var chi_render_size = Vector2(0, 0);
+var chi_btn_size = Vector2(0, 0);
+var chi_sel_size = Vector2(0, 0);
+export var chi_btn_mult = Vector2(6, 4);
+export var chi_sel_mult = Vector2(3.5, 8);
+
 func _ready():
-	get_tree().get_root().connect("size_changed", self, "on_resize");
-	chi_vars_prepare();
-	var ok = chi_localization_load_from_file();
+	chi_exe_directory = $"..".chi_executable_dir;
+	chi_locale_file = chi_exe_directory + "/Localization/GUI.cfg";
+	chi_locale_path = chi_exe_directory + "/Localization";
 
 	chi_font_base = chi_font_set();
 	chi_font_base_small = chi_font_set();
@@ -29,47 +31,53 @@ func _ready():
 	chi_font_apply_text();
 	
 func on_resize():
-	chi_adaptive();
-	
-func chi_adaptive():
 	chi_render_size = OS.get_window_safe_area().size;
-	rect_size = chi_render_size;
-	$GUI_Info.rect_size = chi_render_size;
-	$Main_Controls.rect_size = chi_render_size;
-	$SystemInfo.rect_size = chi_render_size;
-	$Settings.rect_size = chi_render_size;
-	$LangTest.rect_size = chi_render_size;
-	$About.rect_size = chi_render_size;
-	chi_font_set_settings(chi_font_base, chi_render_size.x/44, chi_font.outline_s);
-	chi_font_set_settings(chi_font_base_small, chi_render_size.x/54, chi_font.outline_s);
 	
+	chi_btn_size.x = chi_render_size.x / chi_btn_mult.x;
+	chi_btn_size.y = chi_btn_size.x / chi_btn_mult.y;
 	
+	chi_sel_size.x = chi_render_size.x / chi_sel_mult.x;
+	chi_sel_size.y = chi_sel_size.x / chi_sel_mult.y;
 	
-func chi_vars_prepare():
-	chi_exe_directory = $"..".chi_executable_dir;
-	chi_locale_file = chi_exe_directory + "/Localization/GUI.cfg";
-	chi_locale_path = chi_exe_directory + "/Localization";
+	for chi_item in $"/root/ChimbaBench".chi_nodes:
+		get_node($"/root/ChimbaBench".chi_nodes[chi_item]).chi_btn_size = chi_btn_size;
+		get_node($"/root/ChimbaBench".chi_nodes[chi_item]).chi_render_size = chi_render_size;
+		get_node($"/root/ChimbaBench".chi_nodes[chi_item]).rect_size = chi_render_size;
+	for chi_item in $"/root/ChimbaBench".chi_btn_gui:
+		get_node($"/root/ChimbaBench".chi_btn_gui[chi_item]).rect_size = chi_btn_size;
+	for chi_item in $"/root/ChimbaBench".chi_sel:
+		get_node($"/root/ChimbaBench".chi_sel[chi_item]).rect_size = chi_sel_size;
+	for chi_item in $"/root/ChimbaBench".chi_backgrounds:
+		get_node($"/root/ChimbaBench".chi_backgrounds[chi_item]).rect_size = chi_render_size - Vector2(20, 20);
+		get_node($"/root/ChimbaBench".chi_backgrounds[chi_item]).rect_position = Vector2(10, 10);
+		get_node($"/root/ChimbaBench".chi_backgrounds[chi_item]).color = Color(0.25, 0.25, 0.25, 0.95);
+	
+	if chi_render_size.x <= 640:
+		chi_font_set_settings(chi_font_base, 16, chi_font.outline_s);
+		chi_font_set_settings(chi_font_base_small, 14, chi_font.outline_s);
+	else:
+		chi_font_set_settings(chi_font_base, chi_render_size.x/46, chi_font.outline_m);
+		chi_font_set_settings(chi_font_base_small, chi_render_size.x/56, chi_font.outline_m);
+	
+	$Main_Controls.on_resize();
+	$System_Info.on_resize();
+	$Settings.on_resize();
+	$Lang_Test.on_resize();
+	$About.on_resize();
+	$Message.on_resize();
 
 func chi_font_apply():
-	for chitem in $"/root/ChimbaBench".chi_elements_gui:
-		get_node($"/root/ChimbaBench".chi_elements_gui[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_controls:
-		get_node($"/root/ChimbaBench".chi_elements_gui_controls[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_info:
-		get_node($"/root/ChimbaBench".chi_elements_gui_info[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_settings:
-		get_node($"/root/ChimbaBench".chi_elements_gui_settings[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_langtest:
-		get_node($"/root/ChimbaBench".chi_elements_gui_langtest[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_about:
-		get_node($"/root/ChimbaBench".chi_elements_gui_about[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_gui_message:
-		get_node($"/root/ChimbaBench".chi_elements_gui_message[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in $"/root/ChimbaBench".chi_elements_system_info:
-		get_node($"/root/ChimbaBench".chi_elements_system_info[chitem]).set("custom_fonts/font", chi_font_base);
-		
+	for chitem in $"/root/ChimbaBench".chi_labels:
+		get_node($"/root/ChimbaBench".chi_labels[chitem]).set("custom_fonts/font", chi_font_base);
+	for chitem in $"/root/ChimbaBench".chi_sel:
+		get_node($"/root/ChimbaBench".chi_sel[chitem]).set("custom_fonts/font", chi_font_base);
+	for chitem in $"/root/ChimbaBench".chi_btn_gui:
+		get_node($"/root/ChimbaBench".chi_btn_gui[chitem]).set("custom_fonts/font", chi_font_base);
+	for chitem in $"/root/ChimbaBench".chi_other:
+		get_node($"/root/ChimbaBench".chi_other[chitem]).set("custom_fonts/font", chi_font_base);
+
 func chi_font_apply_text():
-	get_node($"/root/ChimbaBench".chi_elements_gui_message["msg"]).set("custom_fonts/font", chi_font_base_small);
+	get_node($"/root/ChimbaBench".chi_other["message_msg"]).set("custom_fonts/font", chi_font_base_small);
 
 func chi_font_set():
 	var font = DynamicFont.new();
@@ -81,68 +89,14 @@ func chi_font_set_settings(font, size, outliine_size = 0, outline_color:Color = 
 	font.outline_size = outliine_size;
 	font.outline_color = outline_color;
 
-func chi_localization_save_to_file():
-	if not chi_locale_dir.dir_exists(chi_locale_path):
-		chi_locale_dir.open(chi_exe_directory);
-		chi_locale_dir.make_dir("Localization");
-	
-	if chi_locale_dir.dir_exists(chi_locale_path):
-		chi_localization.set_value("Main", "WindowTitle", "ChimbaBench");
-		chi_localization.set_value("GUI_Main_Controls", "BTN_Settings", get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_settings"]).text);
-		chi_localization.set_value("GUI_Main_Controls", "BTN_LangTest", get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_langtest"]).text);
-		chi_localization.set_value("GUI_Main_Controls", "BTN_About", get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_about"]).text);
-		chi_localization.set_value("GUI_Main_Controls", "BTN_SystemInfo", get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_systeminfo"]).text);
-		chi_localization.set_value("GUI_Main_Controls", "BTN_SBox", get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_sbox"]).text);
-		
-		chi_localization.set_value("GUI_SystemInfo", "BTN_Close", get_node($"/root/ChimbaBench".chi_elements_system_info["btn_close"]).text);
-		chi_localization.set_value("GUI_SystemInfo", "BTN_Win_WMI", get_node($"/root/ChimbaBench".chi_elements_system_info["btn_win_wmi"]).text);
-		
-		chi_localization.set_value("GUI_Settings", "BTN_Close", get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_close"]).text);
-		chi_localization.set_value("GUI_Settings", "BTN_Save", get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_save"]).text);
-		chi_localization.set_value("GUI_Settings", "BTN_AA", get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_aa"]).text);
-		chi_localization.set_value("GUI_Settings", "CHECK_Fullscreen", get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_check_fullscreen"]).text);
-		
-		chi_localization.set_value("GUI_LangTest", "BTN_Close", get_node($"/root/ChimbaBench".chi_elements_gui_langtest["btn_close"]).text);
-		chi_localization.set_value("GUI_About", "BTN_Close", get_node($"/root/ChimbaBench".chi_elements_gui_about["btn_close"]).text);
-		chi_localization.set_value("GUI_Message", "BTN_Close", get_node($"/root/ChimbaBench".chi_elements_gui_message["btn_close"]).text);
-		
-		chi_localization.save(chi_locale_file);
-		return 1;
-
-func chi_localization_load_from_file():
-	if chi_locale_dir.dir_exists(chi_locale_path) and chi_locale_dir.file_exists(chi_locale_file):
-		var chi_load_localization = chi_localization.load(chi_locale_file);
-		if chi_load_localization == OK:
-			OS.set_window_title(chi_localization.get_value("Main", "WindowTitle"));
-			get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_settings"]).text = chi_localization.get_value("GUI_Main_Controls", "BTN_Settings");
-			get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_langtest"]).text = chi_localization.get_value("GUI_Main_Controls", "BTN_LangTest");
-			get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_about"]).text = chi_localization.get_value("GUI_Main_Controls", "BTN_About");
-			get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_systeminfo"]).text = chi_localization.get_value("GUI_Main_Controls", "BTN_SystemInfo");
-			get_node($"/root/ChimbaBench".chi_elements_gui_controls["btn_sbox"]).text = chi_localization.get_value("GUI_Main_Controls", "BTN_SBox");
-			
-			get_node($"/root/ChimbaBench".chi_elements_system_info["btn_close"]).text = chi_localization.get_value("GUI_SystemInfo", "BTN_Close");
-			get_node($"/root/ChimbaBench".chi_elements_system_info["btn_win_wmi"]).text = chi_localization.get_value("GUI_SystemInfo", "BTN_Win_WMI");
-			
-			get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_close"]).text = chi_localization.get_value("GUI_Settings", "BTN_Close");
-			get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_save"]).text = chi_localization.get_value("GUI_Settings", "BTN_Save");
-			get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_aa"]).text = chi_localization.get_value("GUI_Settings", "BTN_AA");
-			get_node($"/root/ChimbaBench".chi_elements_gui_settings["btn_check_fullscreen"]).text = chi_localization.get_value("GUI_Settings", "CHECK_Fullscreen");
-			
-			get_node($"/root/ChimbaBench".chi_elements_gui_langtest["btn_close"]).text = chi_localization.get_value("GUI_LangTest", "BTN_Close");
-			get_node($"/root/ChimbaBench".chi_elements_gui_about["btn_close"]).text = chi_localization.get_value("GUI_About", "BTN_Close");
-			get_node($"/root/ChimbaBench".chi_elements_gui_message["btn_close"]).text = chi_localization.get_value("GUI_Message", "BTN_Close");
-			return 1;
-
 func _on_BTN_Settings_pressed():
-	get_node($"/root/ChimbaBench".chi_elements_gui_settings["node"]).visible = true;
+	get_node($"/root/ChimbaBench".chi_nodes["node_settings"]).visible = true;
 
 func _on_BTN_LangTest_pressed():
-	get_node($"/root/ChimbaBench".chi_elements_gui_langtest["node"]).visible = true;
-
+	get_node($"/root/ChimbaBench".chi_nodes["node_lang_test"]).visible = true;
 
 func _on_BTN_About_pressed():
-	get_node($"/root/ChimbaBench".chi_elements_gui_about["node"]).visible = true;
-
+	get_node($"/root/ChimbaBench".chi_nodes["node_about"]).visible = true;
 
 func _on_BTN_SystemInfo_pressed():
-	get_node($"/root/ChimbaBench".chi_elements_system_info["node"]).visible = true;
+	get_node($"/root/ChimbaBench".chi_nodes["node_system_info"]).visible = true;

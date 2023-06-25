@@ -8,7 +8,7 @@ var chi_aa_names = { "0":"Disabled", "1":"2x", "2":"4x", "3":"8x", "4":"16x", "5
 
 func _ready():
 	chi_msaa_fxaa_read();
-#	chi_msaa_aniso_read();
+	chi_msaa_aniso_read();
 
 func _physics_process(delta):
 	#yield(get_tree().create_timer(0.5), "timeout");
@@ -16,8 +16,13 @@ func _physics_process(delta):
 	chi_frame_info.drawcalls_2d = Performance.get_monitor(Performance.RENDER_2D_DRAW_CALLS_IN_FRAME);
 	chi_frame_info.drawcalls_3d = Performance.get_monitor(Performance.RENDER_DRAW_CALLS_IN_FRAME);
 	
+	chi_frame_info.obj_2d = Performance.get_monitor(Performance.RENDER_2D_ITEMS_IN_FRAME);
+	chi_frame_info.obj_3d = Performance.get_monitor(Performance.RENDER_OBJECTS_IN_FRAME);
+	chi_frame_info.vertex = Performance.get_monitor(Performance.RENDER_VERTICES_IN_FRAME);
+	
 	text = str("FPS: ", chi_frame_info.fps) + str("\nDrawCalls 2D: ", chi_frame_info.drawcalls_2d) + str("\nDrawCalls 3D: ", chi_frame_info.drawcalls_3d);
-	text += str("\n\nMSAA: ", chi_aa_names[str(chi_aa.msaa)]) + str("\nFXAA: ", chi_aa_names[str(chi_aa.fxaa)]) + str("\nFXAA Sharp: ", chi_aa.fxaa_sharp);
+	text += str("\nItems in frame (2D/3D): ", chi_frame_info.obj_2d, "/", chi_frame_info.obj_3d) + str("\nVertex in frame: ", chi_frame_info.vertex);
+	text += str("\n\nAnisotropy: ", str(chi_aa.anisotropy), "x\nMSAA: ", chi_aa_names[str(chi_aa.msaa)]) + str("\nFXAA: ", chi_aa_names[str(chi_aa.fxaa)]) + str("\nFXAA Sharp: ", chi_aa.fxaa_sharp);
 	if $"..".more_info == true:
 		chi_mem.dynamic = Performance.get_monitor(Performance.MEMORY_DYNAMIC);
 		chi_mem.dynamic_max = Performance.get_monitor(Performance.MEMORY_DYNAMIC_MAX);
@@ -26,11 +31,7 @@ func _physics_process(delta):
 		chi_mem_vga.texture = Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED);
 		chi_mem_vga.vertex = Performance.get_monitor(Performance.RENDER_VERTEX_MEM_USED);
 		chi_mem_vga.all = Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED);
-		chi_frame_info.obj_2d = Performance.get_monitor(Performance.RENDER_2D_ITEMS_IN_FRAME);
-		chi_frame_info.obj_3d = Performance.get_monitor(Performance.RENDER_OBJECTS_IN_FRAME);
-		chi_frame_info.vertex = Performance.get_monitor(Performance.RENDER_VERTICES_IN_FRAME);
-		text += str("\n\nMORE INFO:\nItems in frame (2D/3D): ", chi_frame_info.obj_2d, "/", chi_frame_info.obj_3d) + str("\nVertex in frame: ", chi_frame_info.vertex);
-		text += str("\nMem Dynamic/max: ", int(chi_mem.dynamic / 1024 / 1024), "/") + str(int(chi_mem.dynamic_max / 1024 / 1024), " MiB");
+		text += str("\n\nMORE INFO:\nMem Dynamic/max: ", int(chi_mem.dynamic / 1024 / 1024), "/") + str(int(chi_mem.dynamic_max / 1024 / 1024), " MiB");
 		text += str("\nMem Static/max: ", int(chi_mem.static / 1024 / 1024), "/")+ str(int(chi_mem.static_max / 1024 / 1024), " MiB");
 		text += str("\nVideo Mem: ", chi_mem_vga.all / 1024 / 1024, " MiB") + str("\nTexture Mem: ", chi_mem_vga.texture / 1024 / 1024, " MiB") + str("\nVertex Mem: ", chi_mem_vga.vertex / 1024 / 1024, " MiB");
 	

@@ -16,6 +16,11 @@ run/disable_stdout=true
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
+[compression]
+
+formats/zstd/long_distance_matching=true
+formats/zstd/compression_level=16
+
 [display]
 
 window/size/width=1280
@@ -35,4 +40,8 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/fallback_to_gles2=true
-vram_compression/import_etc=true
+misc/lossless_compression/webp_compression_level=4
+quality/shadow_atlas/cubemap_size=1024
+quality/shadows/filter_mode=2
+quality/filters/anisotropic_filter_level=16
+quality/voxel_cone_tracing/high_quality=true

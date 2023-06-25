@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/Bench60/Bench60.gd" type="Script" id=1]
+
+[node name="Bench60" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="BTN_Back" type="Button" parent="."]
+margin_left = 21.0
+margin_top = 639.0
+margin_right = 141.0
+margin_bottom = 689.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Back to Main"
+
+[node name="BTN_Start" type="Button" parent="."]
+margin_left = 1129.0
+margin_top = 646.0
+margin_right = 1249.0
+margin_bottom = 696.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Start Benchmark"
+
+[node name="Result_BG" type="ColorRect" parent="."]
+visible = false
+margin_left = 489.0
+margin_top = 310.0
+margin_right = 747.0
+margin_bottom = 402.0
+color = Color( 0.0627451, 0.0705882, 0.337255, 0.768627 )
+
+[node name="Result" type="Label" parent="."]
+visible = false
+margin_left = 485.0
+margin_top = 305.0
+margin_right = 788.0
+margin_bottom = 416.0
+text = "Result"
+align = 1
+valign = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="About" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BTN_Info" type="Button" parent="About"]
+margin_left = 578.0
+margin_top = 643.0
+margin_right = 731.0
+margin_bottom = 693.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Info"
+
+[node name="msg" type="Control" parent="About"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="About/msg"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BTN_Close" type="Button" parent="About/msg"]
+margin_left = 578.0
+margin_top = 643.0
+margin_right = 731.0
+margin_bottom = 693.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Close"
+
+[node name="Text" type="TextEdit" parent="About/msg"]
+margin_right = 40.0
+margin_bottom = 40.0
+readonly = true
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+wrap_enabled = true
+
+[connection signal="pressed" from="BTN_Back" to="." method="_on_BTN_Back_pressed"]
+[connection signal="pressed" from="BTN_Start" to="." method="_on_BTN_Start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="pressed" from="About/BTN_Info" to="." method="_on_BTN_About_pressed"]
+[connection signal="pressed" from="About/msg/BTN_Close" to="." method="_on_BTN_Close_pressed"]

@@ -1,39 +1,28 @@
 extends Control
 
-var chi_render_size = Vector2(0,0);
+var chi_render_size = Vector2(0, 0);
+var chi_btn_size = Vector2(0, 0);
 
-func _ready():
-	get_tree().get_root().connect("size_changed", self, "on_resize");
-	
 func on_resize():
-	adaptive_buttons();
-
-func adaptive_buttons():
-	chi_render_size = OS.get_window_safe_area().size;
-	$BTN_About.rect_size.x = chi_render_size.x / 8;
-	$BTN_About.rect_size.y = $BTN_About.rect_size.x / 3;
-	$BTN_About.rect_position = Vector2((chi_render_size.x - 10) - $BTN_About.rect_size.x, (chi_render_size.y - 10) - $BTN_About.rect_size.y);
 	
-	$BTN_SystemInfo.rect_size.x = chi_render_size.x / 8;
-	$BTN_SystemInfo.rect_size.y = $BTN_SystemInfo.rect_size.x / 3;
-	$BTN_SystemInfo.rect_position = Vector2(((chi_render_size.x - 20) - $BTN_SystemInfo.rect_size.x) - $BTN_About.rect_size.x, (chi_render_size.y - 10) - $BTN_SystemInfo.rect_size.y);
-
-	$BTN_Settings.rect_size.x = chi_render_size.x / 8;
-	$BTN_Settings.rect_size.y = $BTN_Settings.rect_size.x / 3;
-	$BTN_Settings.rect_position = Vector2(10, (chi_render_size.y - 10) - $BTN_Settings.rect_size.y);
+	$LBL_BTN_Main_Menu.rect_position = Vector2(10, chi_render_size.y - 40 - chi_btn_size.y * 4);
+	$BTN_System_Info.rect_position = Vector2(10, chi_render_size.y - 30 - chi_btn_size.y * 3);
+	$BTN_Settings.rect_position = Vector2(10, chi_render_size.y - 20 - chi_btn_size.y * 2);
+	$BTN_Exit.rect_position = Vector2(10, chi_render_size.y - 10 - chi_btn_size.y);
 	
-	$BTN_SBox.rect_size.x = chi_render_size.x / 8;
-	$BTN_SBox.rect_size.y = $BTN_SBox.rect_size.x / 3;
-	$BTN_SBox.rect_position = Vector2(10, (chi_render_size.y - 20) - $BTN_SBox.rect_size.y - $BTN_Settings.rect_size.y);
+	$LBL_BTN_Tests.rect_position = Vector2(20 + chi_btn_size.x, chi_render_size.y - 30 - chi_btn_size.y * 3);
+	$BTN_GPU_Heavy.rect_position = Vector2(20 + chi_btn_size.x, chi_render_size.y - 20 - chi_btn_size.y * 2);
+	$BTN_SBox.rect_position = Vector2(20 + chi_btn_size.x, chi_render_size.y - 10 - chi_btn_size.y);
 	
-	$BTN_LangTest.rect_size.x = chi_render_size.x / 8;
-	$BTN_LangTest.rect_size.y = $BTN_LangTest.rect_size.x / 3;
-	$BTN_LangTest.rect_position = Vector2((20 + $BTN_Settings.rect_size.x), (chi_render_size.y - 10) - $BTN_LangTest.rect_size.y);
-	
-	$BTN_Exit.rect_size.x = chi_render_size.x / 8;
-	$BTN_Exit.rect_size.y = $BTN_Exit.rect_size.x / 3;
-	$BTN_Exit.rect_position = Vector2(((chi_render_size.x / 2) - ($BTN_Exit.rect_size.x / 2)), chi_render_size.y - 10 - $BTN_Exit.rect_size.y);
-
+	$LBL_BTN_Other.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 30 - chi_btn_size.y * 3);
+	$BTN_Lang_Test.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 20 - chi_btn_size.y * 2);
+	$BTN_About.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 10 - chi_btn_size.y);
 
 func _on_BTN_Exit_pressed():
 	get_tree().quit();
+
+func _on_BTN_SBox_pressed():
+	get_tree().change_scene("res://SC_SimpleBox/SimpleBox.tscn");
+
+func _on_BTN_GPU_Heavy_pressed():
+	get_tree().change_scene("res://SC_GPU_Heavy/GPUHeavy.tscn");

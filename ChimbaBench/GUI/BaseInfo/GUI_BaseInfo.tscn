@@ -5,23 +5,20 @@
 [ext_resource path="res://GUI/BaseInfo/GUI_BaseInfo.gd" type="Script" id=3]
 
 [node name="GUI_BaseInfo" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1277.0
+margin_bottom = 719.0
 script = ExtResource( 3 )
 
 [node name="BaseSystemInfo" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 502.0
-margin_bottom = 110.0
+margin_right = 575.0
+margin_bottom = 50.0
 text = "Base Sys Info"
 script = ExtResource( 2 )
 
 [node name="BasePerfInfo" type="Label" parent="."]
 margin_left = 614.0
-margin_top = 10.0
 margin_right = 1254.0
-margin_bottom = 610.0
+margin_bottom = 47.0
 text = "Base Perf Info"
 align = 2
 script = ExtResource( 1 )

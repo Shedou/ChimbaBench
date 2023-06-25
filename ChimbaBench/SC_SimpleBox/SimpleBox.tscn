@@ -1,66 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://default_env.tres" type="Environment" id=1]
-[ext_resource path="res://Scripts/CSGBox.gd" type="Script" id=2]
-[ext_resource path="res://Materials/MAT4/carbo.tres" type="Material" id=3]
+[ext_resource path="res://SC_SimpleBox/SimpleBoxEnv.tres" type="Environment" id=1]
+[ext_resource path="res://SC_SimpleBox/Materials/MAT4/carbo.tres" type="Material" id=3]
 [ext_resource path="res://GUI/BaseInfo/GUI_BaseInfo.tscn" type="PackedScene" id=4]
 [ext_resource path="res://SC_SimpleBox/Scripts/SimpleBox.gd" type="Script" id=5]
-[ext_resource path="res://SC_SimpleBox/Scripts/Main_Controls.gd" type="Script" id=6]
+[ext_resource path="res://GUI/Bench60/Bench60.tscn" type="PackedScene" id=6]
 
 [node name="SimpleBox" type="Spatial"]
 script = ExtResource( 5 )
 
 [node name="GUI_BaseInfo" parent="." instance=ExtResource( 4 )]
+margin_right = 1275.0
+margin_bottom = 714.0
 
-[node name="Main_Controls" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-mouse_filter = 1
-script = ExtResource( 6 )
-
-[node name="BTN_Back" type="Button" parent="Main_Controls"]
-margin_left = 21.0
-margin_top = 639.0
-margin_right = 141.0
-margin_bottom = 689.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Back to Main"
-
-[node name="BTN_Start" type="Button" parent="Main_Controls"]
-margin_left = 1129.0
-margin_top = 646.0
-margin_right = 1249.0
-margin_bottom = 696.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Start Benchmark"
-
-[node name="Result_BG" type="ColorRect" parent="Main_Controls"]
-visible = false
-margin_left = 489.0
-margin_top = 310.0
-margin_right = 747.0
-margin_bottom = 402.0
-color = Color( 0.0627451, 0.0705882, 0.337255, 0.823529 )
-
-[node name="Result" type="Label" parent="Main_Controls"]
-visible = false
-margin_left = 485.0
-margin_top = 305.0
-margin_right = 788.0
-margin_bottom = 416.0
-text = "Result"
-align = 1
-valign = 1
-
-[node name="Timer" type="Timer" parent="Main_Controls"]
-wait_time = 2.0
-one_shot = true
-
-[node name="Timer2" type="Timer" parent="Main_Controls"]
-wait_time = 60.0
-one_shot = true
+[node name="Bench60" parent="." instance=ExtResource( 6 )]
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.999928, 0.0119847, 0.0010061, -0.0100632, 0.879547, -0.475706, -0.00658612, 0.475661, 0.879604, -1.12197, 1.75272, -2.83079 )
@@ -68,14 +21,8 @@ width = 4.0
 height = 4.0
 depth = 4.0
 material = ExtResource( 3 )
-script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.782082, -0.0559048, 0.620663, -0.013882, 0.994158, 0.107039, -0.623021, -0.0923292, 0.776737, 1.8264, 2.44176, 1.10267 )
 environment = ExtResource( 1 )
 fov = 95.0
-
-[connection signal="pressed" from="Main_Controls/BTN_Back" to="Main_Controls" method="_on_BTN_Back_pressed"]
-[connection signal="pressed" from="Main_Controls/BTN_Start" to="Main_Controls" method="_on_BTN_Start_pressed"]
-[connection signal="timeout" from="Main_Controls/Timer" to="Main_Controls" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Main_Controls/Timer2" to="Main_Controls" method="_on_Timer2_timeout"]

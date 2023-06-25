@@ -3,14 +3,14 @@ extends Control
 export var more_info : bool = false;
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
-var chi_project_name_and_version = "ChimbaBench 2.1 (GPLv3+)\n";
-var chi_font = {"main":0, "small":0,
-	"size_main_s":24, "size_main_m":32, "size_main_l":44,
-	"size_small_s":20, "size_small_m":24, "size_small_l":32,
-	"outline_s":2, "outline_m":3, "outline_l":4, "active":5, "active_2":0}
+var chi_project_name_and_version = "ChimbaBench 2.2 (GPLv3+)";
+var chi_bi_font = { "outline_s":2, "outline_m":3, "outline_l":4 }
 
-var chi_render_size = {"x":0, "y":0};
-var chi_windows_size = {"x":0, "y":0};
+var chi_bi_render_size = Vector2(0, 0);
+var chi_bi_windows_size = Vector2(0, 0);
+
+
+var chi_bi_font_m = DynamicFont.new();
 
 var chi_elements_gui_baseinfo = {
 	"base_system" : "BaseSystemInfo",
@@ -22,41 +22,39 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "on_resize");
 	
 	for chitem in chi_elements_gui_baseinfo:
-		get_node(chi_elements_gui_baseinfo[chitem]).set("custom_fonts/font", chi_font.main);
+		get_node(chi_elements_gui_baseinfo[chitem]).set("custom_fonts/font", chi_bi_font_m);
 
 func on_resize():
 	$BaseSystemInfo.chi_info();
 	chi_adaptive_prepare();
 	
 func chi_prepare():
-	chi_font.main = DynamicFont.new();
-	chi_font.small = DynamicFont.new();
-	chi_render_size = OS.get_window_safe_area().size;
+	chi_bi_render_size = OS.get_window_safe_area().size;
 	$BaseSystemInfo.chi_info();
-	rect_size = chi_render_size;
-	chi_font.main = chi_font_set();
-	chi_font.small = chi_font_set();
+	rect_size = chi_bi_render_size;
+	chi_bi_font_m = chi_font_set();
 	chi_adaptive_prepare();
 
 func chi_adaptive_prepare():
-	chi_render_size = OS.get_window_safe_area().size;
-	rect_size = chi_render_size;
-	if chi_render_size.x <= 1920:
-		chi_font.active_2 = 0;
-		if chi_font.active != chi_font.active_2:
-			chi_font_set_settings(chi_font.main, chi_font.size_main_s, chi_font.outline_s);
-		chi_font.active = chi_font.active_2;
-	if chi_render_size.x > 1920 and chi_render_size.x <= 2560:
-		chi_font.active_2 = 1;
-		if chi_font.active != chi_font.active_2:
-			chi_font_set_settings(chi_font.main, chi_font.size_main_m, chi_font.outline_m);
-		chi_font.active = chi_font.active_2;
-	if chi_render_size.x > 2560:
-		chi_font.active_2 = 2;
-		if chi_font.active != chi_font.active_2:
-			chi_font_set_settings(chi_font.main, chi_font.size_main_l, chi_font.outline_l);
-		chi_font.active = chi_font.active_2;
-	$BasePerfInfo.rect_position.x = chi_render_size.x - 650;
+	chi_bi_render_size = OS.get_window_safe_area().size;
+	rect_size = chi_bi_render_size;
+	
+	if chi_bi_render_size.x <= 640:
+		chi_font_set_settings(chi_bi_font_m, 16, chi_bi_font.outline_s);
+	if chi_bi_render_size.x > 640 and chi_bi_render_size.x < 1920:
+		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_s);
+	if chi_bi_render_size.x >= 1920 and chi_bi_render_size.x < 2560:
+		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_m);
+	if chi_bi_render_size.x >= 2560:
+		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_l);
+	
+	$BaseSystemInfo.rect_size.x = chi_bi_render_size.x / 2;
+	$BaseSystemInfo.rect_position.x = 10;
+	$BaseSystemInfo.rect_position.y = 10;
+	
+	$BasePerfInfo.rect_size.x = chi_bi_render_size.x / 2;
+	$BasePerfInfo.rect_position.x = chi_bi_render_size.x - $BasePerfInfo.rect_size.x - 10;
+	$BasePerfInfo.rect_position.y = 10;
 
 func chi_font_set():
 	var font = DynamicFont.new();

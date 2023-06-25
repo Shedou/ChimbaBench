@@ -1,0 +1,28 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://SC_GPU_Heavy/Materials/Bricks_1/bricks_1_albedo.webp" type="Texture" id=1]
+[ext_resource path="res://SC_GPU_Heavy/Materials/Bricks_1/bricks_1_orm.png" type="Texture" id=2]
+[ext_resource path="res://SC_GPU_Heavy/Materials/Bricks_1/bricks_1_normal.png" type="Texture" id=3]
+[ext_resource path="res://SC_GPU_Heavy/Materials/Bricks_1/bricks_1_depth.png" type="Texture" id=4]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+metallic_texture = ExtResource( 2 )
+metallic_texture_channel = 2
+roughness_texture = ExtResource( 2 )
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = ExtResource( 3 )
+depth_enabled = true
+depth_scale = -0.305
+depth_deep_parallax = true
+depth_min_layers = 1
+depth_max_layers = 64
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 4 )
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.66
+subsurf_scatter_texture = ExtResource( 2 )
+uv1_scale = Vector3( 128, 128, 128 )

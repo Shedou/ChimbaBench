@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://SC_SimpleBox/Materials/MAT4/carbo_albedo.webp" type="Texture" id=2]
+
+[resource]
+params_specular_mode = 4
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 2, 2, 2 )

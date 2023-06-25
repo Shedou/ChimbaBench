@@ -11,7 +11,7 @@ func _ready():
 func _on_BTN_Win_WMI_pressed():
 	if $"/root/ChimbaBench".chi_OS == "Windows":
 		chi_windows_wmi_info();
-		$"/root/ChimbaBench".chi_show_message("wmic path Win32_VideoController\n" + chi_wmi_info_output, "Windows Management Instrumentation (WMI) Info");
+		$"/root/ChimbaBench".chi_show_message("Windows Management Instrumentation\nwmic path Win32_VideoController\n\n" + chi_wmi_info_output, "WMI Info");
 
 func chi_windows_wmi_info():
 	OS.execute("wmic", ["path", "Win32_VideoController", "get", "AdapterCompatibility"], true, chi_wmi_info, false, false);
