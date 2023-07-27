@@ -3,7 +3,7 @@ extends Control
 export var more_info : bool = false;
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
-var chi_project_name_and_version = "ChimbaBench 2.2 (GPLv3+)";
+var chi_project_name_and_version = "ChimbaBench 2.3 (GPLv3+)";
 var chi_bi_font = { "outline_s":2, "outline_m":3, "outline_l":4 }
 
 var chi_bi_render_size = Vector2(0, 0);
@@ -12,10 +12,7 @@ var chi_bi_windows_size = Vector2(0, 0);
 
 var chi_bi_font_m = DynamicFont.new();
 
-var chi_elements_gui_baseinfo = {
-	"base_system" : "BaseSystemInfo",
-	"base_perf" : "BasePerfInfo"
-};
+var chi_elements_gui_baseinfo = { "base_system" : "BaseSystemInfo", "base_perf" : "BasePerfInfo" };
 
 func _ready():
 	chi_prepare();
@@ -34,6 +31,7 @@ func chi_prepare():
 	rect_size = chi_bi_render_size;
 	chi_bi_font_m = chi_font_set();
 	chi_adaptive_prepare();
+	$BasePerfInfo.chi_msaa_aniso_read();
 
 func chi_adaptive_prepare():
 	chi_bi_render_size = OS.get_window_safe_area().size;

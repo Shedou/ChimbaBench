@@ -1,48 +1,53 @@
 extends Control
 
+var chi_exe_dir;
+var spacer = "------------------------------------------------------------";
+
+var chi_win_exit_codes = {
+	0:"0",
+	1:"1"
+}
 
 var chi_wmi_info = [""];
 var chi_wmi_info_output = "";
-var chi_exe_dir;
 
 func _ready():
 	chi_exe_dir = $"../../..".chi_executable_dir;
 
-func _on_BTN_Win_WMI_pressed():
-	if $"/root/ChimbaBench".chi_OS == "Windows":
-		chi_windows_wmi_info();
-		$"/root/ChimbaBench".chi_show_message("Windows Management Instrumentation\nwmic path Win32_VideoController\n\n" + chi_wmi_info_output, "WMI Info");
+func chi_os_exe_command(cname:String, command:String, args = [], append:bool = false, block:bool = true, stderr:bool = false, open_console:bool = false):
+	var cmd_output = [""];
+	var chmod_output = [""];
+	var exit_code_str = "";
+	var exit_code;
+	var exit_code_ch;
+	
+	if append == false:
+		exit_code = OS.execute(command, args, block, cmd_output, stderr, open_console);
+		if cmd_output[0] != "":
+			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\n", spacer, "\n", cmd_output[0], "\n\n"), cname);
+		else:
+			if exit_code != null: exit_code_str = " - ( " + str(exit_code) + " )";
+			else: exit_code_str = " - ( Undefined error code )";
+			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
+	else:
+		exit_code = OS.execute(command, args, block, cmd_output, stderr, open_console);
+		if cmd_output[0] != "":
+			$"/root/ChimbaBench".chi_show_message(str(cmd_output[0]), cname);
+		else:
+			if exit_code != null: exit_code_str = " - ( " + exit_code + " )";
+			else: exit_code_str = " - ( Undefined error code )";
+			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
 
-func chi_windows_wmi_info():
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "AdapterCompatibility"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "AdapterDACType"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "AdapterRAM"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "Caption"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "Description"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "DeviceID"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "DriverDate"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "DriverVersion"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "InfFilename"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "InfSection"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "Name"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "PNPDeviceID"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "Status"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "VideoModeDescription"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "VideoProcessor"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
-	OS.execute("wmic", ["path", "Win32_VideoController", "get", "StatusInfo"], true, chi_wmi_info, false, false);
-	chi_wmi_info_output += chi_wmi_info[0];
+
+func _on_BTN_Win_WMI_pressed():
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "Name"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "DriverDate"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "DriverVersion"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "PNPDeviceID"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "InfFilename"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "InfSection"], true);
+	chi_os_exe_command("WMI Info", "wmic", ["path", "Win32_VideoController", "get", "AdapterRAM"], true);
+
+func _on_BTN_Sys_Info_pressed():
+	chi_os_exe_command("System Info", "systeminfo", []);
+	

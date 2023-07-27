@@ -20,15 +20,13 @@ var chi_resol = Vector2(1024, 600);
 var chi_resol_fullscreen = false;
 var chi_resolution = 2;
 var chi_resols = {
-	0:640,100:360, 1:800,101:600,
-	2:1280,102:720, 3:1920,103:1080,
-	4:2560,104:1440, 5:3840,105:2160,
-	6:7680,106:4320, 7:640,107:480,
-	8:1024,108:768, 9:1366,109:768,
-	10:1440,110:900, 11:1280,111:1024,
-	12:1600,112:900, 13:1920,113:1200,
-	14:2560,114:1080, 15:2560,115:1600,
+	0:640,100:360, 1:800,101:600, 2:1280,102:720, 3:1920,103:1080,
+	4:2560,104:1440, 5:3840,105:2160, 6:7680,106:4320, 7:640,107:480,
+	8:1024,108:768, 9:1366,109:768, 10:1440,110:900, 11:1280,111:1024,
+	12:1600,112:900, 13:1920,113:1200, 14:2560,114:1080, 15:2560,115:1600,
 	16:3440,116:1440 };
+
+var chi_aniso_id = { 1:0, 2:1, 4:2, 8:3, 16:4 };
 
 func _ready():
 	chi_desktop_size = OS.get_screen_size();
@@ -101,13 +99,13 @@ func set_settings_fxaa():
 	pass
 
 func set_settings_aniso():
-	$SEL_Aniso.add_item("Anisotropy 1x", 1);
+	$SEL_Aniso.add_item("Disabled", 1);
+	$SEL_Aniso.add_item("Anisotropy 2x", 2);
 	$SEL_Aniso.add_item("Anisotropy 4x", 4);
 	$SEL_Aniso.add_item("Anisotropy 8x", 8);
 	$SEL_Aniso.add_item("Anisotropy 16x", 16);
 	var chi_aniso_choice = ProjectSettings.get_setting("rendering/quality/filters/anisotropic_filter_level");
-	if chi_aniso_choice == 1: $SEL_Aniso.select(chi_aniso_choice - 1);
-	else: $SEL_Aniso.select((chi_aniso_choice / 4) - 1);
+	$SEL_Aniso.select(chi_aniso_id[chi_aniso_choice]);
 
 func set_settings_resolution():
 	$SEL_resolution.add_item("640x360 - 0.23 MP", 0);

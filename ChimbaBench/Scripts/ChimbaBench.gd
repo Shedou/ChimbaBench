@@ -19,7 +19,6 @@ var chi_executable_dir = OS.get_executable_path().get_base_dir();
 var chi_OS = OS.get_name();
 var chi_smi_enabled = 0;
 
-
 var chi_nodes = {
 	"node_gui" : "/root/ChimbaBench/GUI",
 	"node_gui_info" : "/root/ChimbaBench/GUI/GUI_Info",
@@ -48,6 +47,7 @@ var chi_sel = {
 	"sel_settings_msaa" : "/root/ChimbaBench/GUI/Settings/SEL_MSAA",
 	"sel_settings_aniso" : "/root/ChimbaBench/GUI/Settings/SEL_Aniso",
 	"sel_settings_resolution" : "/root/ChimbaBench/GUI/Settings/SEL_resolution",
+	"sel_font_size" : "/root/ChimbaBench/GUI/Lang_Test/SEL_Font_Size"
 };
 var chi_labels = {
 	"sysi_text_portable" : "/root/ChimbaBench/GUI/System_Info/Lin/Portable",
@@ -75,6 +75,7 @@ var chi_btn_gui = {
 	"btn_settings_save_restart" : "/root/ChimbaBench/GUI/Settings/BTN_Save_Restart",
 	"btn_sysi_close" : "/root/ChimbaBench/GUI/System_Info/BTN_Close",
 	"btn_sysi_win_wmi" : "/root/ChimbaBench/GUI/System_Info/Win/BTN_Win_WMI",
+	"btn_sysi_win_sys" : "/root/ChimbaBench/GUI/System_Info/Win/BTN_Sys_Info",
 	"btn_sysi_Lin_neo" : "/root/ChimbaBench/GUI/System_Info/Lin/BTN_NeoFetch",
 	"btn_sysi_Lin_dmi" : "/root/ChimbaBench/GUI/System_Info/Lin/BTN_dmidecode35",
 	"btn_sysi_Lin_dmi_bios" : "/root/ChimbaBench/GUI/System_Info/Lin/BTN_biosdecode35",

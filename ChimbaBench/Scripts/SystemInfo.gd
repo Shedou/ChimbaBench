@@ -13,6 +13,7 @@ func _ready():
 
 func on_resize():
 	$Win.rect_size = chi_render_size;
+	$Lin.rect_size = chi_render_size;
 	$BTN_Close.rect_position = Vector2(20, (chi_render_size.y - 20) - $BTN_Close.rect_size.y);
 	
 	if $"/root/ChimbaBench".chi_OS == "Windows": adaptive_buttons_windows();
@@ -20,6 +21,7 @@ func on_resize():
 
 func adaptive_buttons_windows():
 	$Win/BTN_Win_WMI.rect_position = Vector2(20, 20);
+	$Win/BTN_Sys_Info.rect_position = Vector2(20, 30 + chi_btn_size.y);
 	
 func adaptive_buttons_linux():
 	$Lin/Portable.rect_size.x = chi_render_size.x / 3;
