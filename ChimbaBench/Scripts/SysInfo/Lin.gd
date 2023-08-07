@@ -1,5 +1,6 @@
 extends Control
 
+const root = "/root/ChimbaBench";
 
 var chi_exe_dir;
 var spacer = "------------------------------------------------------------";
@@ -16,7 +17,7 @@ var chi_linux_exit_codes = {
 
 
 func _ready():
-	chi_exe_dir = $"../../..".chi_executable_dir;
+	chi_exe_dir = get_node(root).chi_executable_dir;
 	$Portable.text = "Portable tools";
 	$System.text = "System dependent tools";
 
@@ -60,9 +61,9 @@ func chi_os_exe_command(cname:String, command:String, args = [], chmod:bool = fa
 		exit_code_ch = OS.execute("chmod", ["u+x", args[0]], block, chmod_output, stderr, open_console);
 	exit_code = OS.execute(command, args, block, cmd_output, stderr, open_console);
 	if cmd_output[0] != "":
-		$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\n", spacer, "\n", cmd_output[0], "\n\n"), cname);
+		get_node(root).chi_show_message(str("Command: ", command, "\nArguments: ", args, "\n", spacer, "\n", cmd_output[0], "\n\n"), cname);
 	else:
 		if chi_linux_exit_codes[exit_code] != null: exit_code_str = " - ( " + chi_linux_exit_codes[exit_code] + " )";
 		else: exit_code_str = " - ( Undefined error code )";
-		$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
+		get_node(root).chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
 

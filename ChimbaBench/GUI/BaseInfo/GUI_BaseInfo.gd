@@ -3,8 +3,8 @@ extends Control
 export var more_info : bool = false;
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
-var chi_project_name_and_version = "ChimbaBench 2.3 (GPLv3+)";
-var chi_bi_font = { "outline_s":2, "outline_m":3, "outline_l":4 }
+var chi_project_name_and_version = "ChimbaBench 2.4 (GPLv3+)";
+var chi_bi_font = { "outline_s":1, "outline_m":2, "outline_l":3, "outline_xl":4 }
 
 var chi_bi_render_size = Vector2(0, 0);
 var chi_bi_windows_size = Vector2(0, 0);
@@ -40,11 +40,11 @@ func chi_adaptive_prepare():
 	if chi_bi_render_size.x <= 640:
 		chi_font_set_settings(chi_bi_font_m, 16, chi_bi_font.outline_s);
 	if chi_bi_render_size.x > 640 and chi_bi_render_size.x < 1920:
-		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_s);
-	if chi_bi_render_size.x >= 1920 and chi_bi_render_size.x < 2560:
 		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_m);
-	if chi_bi_render_size.x >= 2560:
+	if chi_bi_render_size.x >= 1920 and chi_bi_render_size.x < 2560:
 		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_l);
+	if chi_bi_render_size.x >= 2560:
+		chi_font_set_settings(chi_bi_font_m, chi_bi_render_size.x/44, chi_bi_font.outline_xl);
 	
 	$BaseSystemInfo.rect_size.x = chi_bi_render_size.x / 2;
 	$BaseSystemInfo.rect_position.x = 10;

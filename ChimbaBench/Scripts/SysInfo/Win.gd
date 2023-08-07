@@ -1,5 +1,7 @@
 extends Control
 
+const root = "/root/ChimbaBench";
+
 var chi_exe_dir;
 var spacer = "------------------------------------------------------------";
 
@@ -12,7 +14,7 @@ var chi_wmi_info = [""];
 var chi_wmi_info_output = "";
 
 func _ready():
-	chi_exe_dir = $"../../..".chi_executable_dir;
+	chi_exe_dir = get_node(root).chi_executable_dir;
 
 func chi_os_exe_command(cname:String, command:String, args = [], append:bool = false, block:bool = true, stderr:bool = false, open_console:bool = false):
 	var cmd_output = [""];
@@ -24,19 +26,19 @@ func chi_os_exe_command(cname:String, command:String, args = [], append:bool = f
 	if append == false:
 		exit_code = OS.execute(command, args, block, cmd_output, stderr, open_console);
 		if cmd_output[0] != "":
-			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\n", spacer, "\n", cmd_output[0], "\n\n"), cname);
+			get_node(root).chi_show_message(str("Command: ", command, "\nArguments: ", args, "\n", spacer, "\n", cmd_output[0], "\n\n"), cname);
 		else:
 			if exit_code != null: exit_code_str = " - ( " + str(exit_code) + " )";
 			else: exit_code_str = " - ( Undefined error code )";
-			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
+			get_node(root).chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
 	else:
 		exit_code = OS.execute(command, args, block, cmd_output, stderr, open_console);
 		if cmd_output[0] != "":
-			$"/root/ChimbaBench".chi_show_message(str(cmd_output[0]), cname);
+			get_node(root).chi_show_message(str(cmd_output[0]), cname);
 		else:
 			if exit_code != null: exit_code_str = " - ( " + exit_code + " )";
 			else: exit_code_str = " - ( Undefined error code )";
-			$"/root/ChimbaBench".chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
+			get_node(root).chi_show_message(str("Command: ", command, "\nArguments: ", args, "\nError code: ", exit_code, exit_code_str, "\n\n"), cname);
 
 
 func _on_BTN_Win_WMI_pressed():

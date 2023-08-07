@@ -1,9 +1,12 @@
 extends Control
 
+const root = "/root/ChimbaBench";
+var chi_render_size = Vector2(0, 0);
+
 var chi_desktop_size = Vector2(0, 0);
 
-var chi_render_size = Vector2(0, 0);
 var chi_btn_size = Vector2(0, 0);
+var chi_btn_box_size = Vector2(0, 0);
 
 var chi_exe_directory;
 var chi_sett_d = Directory.new();
@@ -30,7 +33,7 @@ var chi_aniso_id = { 1:0, 2:1, 4:2, 8:3, 16:4 };
 
 func _ready():
 	chi_desktop_size = OS.get_screen_size();
-	chi_sett_exe = $"../..".chi_executable_dir;
+	chi_sett_exe = get_node(root).chi_executable_dir;
 	chi_sett_file = chi_sett_exe + "/Settings/Main.cfg";
 	chi_sett_dir = chi_sett_exe + "/Settings";
 	set_settings_msaa();
@@ -135,19 +138,19 @@ func _on_SEL_MSAA_item_selected(index):
 	ProjectSettings.set_setting("rendering/quality/filters/msaa", index);
 	var c_RID = $"/root".get_viewport_rid();
 	VisualServer.viewport_set_msaa(c_RID, index);
-	$"..".get_node("GUI_BaseInfo/BasePerfInfo").chi_msaa_fxaa_read();
+	get_node(root + "/GUI/GUI_BaseInfo/BasePerfInfo").chi_msaa_fxaa_read();
 	chi_msaa = index;
 	$SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
 
 func _on_SEL_Aniso_item_selected(index):
 	ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", $SEL_Aniso.get_item_id(index));
-	$"..".get_node("GUI_BaseInfo/BasePerfInfo").chi_msaa_aniso_read();
-	$"../..".chi_show_message("Anisotropic filtering does not change without a full program restart!\nUse the \"Save and restart\" button to change anisotropic level, or manually restart the programm!", "Attention!");
+	get_node(root + "/GUI/GUI_BaseInfo/BasePerfInfo").chi_msaa_aniso_read();
+	get_node(root).chi_show_message("Anisotropic filtering does not change without a full program restart!\nUse the \"Save and restart\" button to change anisotropic level, or manually restart the programm!", "Attention!");
 
 func _on_SEL_resolution_item_selected(index):
 	if chi_resol_fullscreen == false and chi_desktop_size.x >= chi_resols[$SEL_resolution.get_item_id(index)] and chi_desktop_size.y >= chi_resols[$SEL_resolution.get_item_id(index)+100]:
-		#OS.set_window_size(Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]));
-		OS.window_size = Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]);
+		OS.set_window_size(Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]));
+		#OS.window_size = Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]);
 		OS.set_window_fullscreen(true);
 		OS.set_window_fullscreen(false);
 		chi_resolution = index;
@@ -167,7 +170,7 @@ func _on_CHECK_Fullscreen_toggled(button_pressed):
 
 func _on_BTN_Save_pressed():
 	if chi_settings_save_to_file() == 1:
-		$"../..".chi_show_message("Settings saved to file:\n" + str(chi_sett_file), "Settings Saved!");
+		get_node(root).chi_show_message("Settings saved to file:\n" + str(chi_sett_file), "Settings Saved!");
 
 func _on_BTN_Save_Restart_pressed():
 	if chi_settings_save_to_file() == 1:

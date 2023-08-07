@@ -10,7 +10,7 @@
 [ext_resource path="res://Textures/Overs_hover.png" type="Texture" id=8]
 [ext_resource path="res://Textures/git_normal.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/LangTest.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/FontTest.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/About.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/SystemInfo.gd" type="Script" id=14]
@@ -90,14 +90,14 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Settings"
 
-[node name="BTN_Lang_Test" type="Button" parent="GUI/Main_Controls"]
+[node name="BTN_Font_Test" type="Button" parent="GUI/Main_Controls"]
 margin_left = 1096.0
 margin_top = 571.0
 margin_right = 1266.0
 margin_bottom = 621.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Lang Test"
+text = "Font Test"
 
 [node name="BTN_About" type="Button" parent="GUI/Main_Controls"]
 margin_left = 1115.0
@@ -363,41 +363,40 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Fullscreen mode"
 
-[node name="Lang_Test" type="Control" parent="GUI"]
+[node name="Font_Test" type="Control" parent="GUI"]
 visible = false
-margin_right = 1014.0
-margin_bottom = 590.0
+margin_right = 1277.0
+margin_bottom = 718.0
 script = ExtResource( 11 )
 
-[node name="Background" type="ColorRect" parent="GUI/Lang_Test"]
+[node name="Background" type="ColorRect" parent="GUI/Font_Test"]
 margin_right = 1280.0
 margin_bottom = 722.0
 color = Color( 0.235294, 0.235294, 0.235294, 0.756863 )
 
-[node name="Background2" type="ColorRect" parent="GUI/Lang_Test"]
-margin_right = 994.0
-margin_bottom = 290.0
+[node name="Background2" type="ColorRect" parent="GUI/Font_Test"]
+margin_right = 1262.0
+margin_bottom = 419.0
 color = Color( 0.298039, 0.298039, 0.298039, 0.756863 )
 
-[node name="Langs_Main" type="Label" parent="GUI/Lang_Test"]
-margin_left = 70.0
-margin_top = 55.0
-margin_right = 562.0
-margin_bottom = 335.0
+[node name="Langs_Main" type="Label" parent="GUI/Font_Test"]
+margin_left = 48.0
+margin_top = 47.0
+margin_right = 540.0
+margin_bottom = 327.0
 text = "
 Main"
-align = 1
 
-[node name="Langs_Other" type="Label" parent="GUI/Lang_Test"]
-margin_left = 730.0
-margin_top = 51.0
-margin_right = 1222.0
-margin_bottom = 331.0
+[node name="Langs_Other" type="Label" parent="GUI/Font_Test"]
+visible = false
+margin_left = 48.0
+margin_top = 47.0
+margin_right = 540.0
+margin_bottom = 327.0
 text = "
-Second"
-align = 1
+Two"
 
-[node name="Font_Current" type="Label" parent="GUI/Lang_Test"]
+[node name="Font_Current" type="Label" parent="GUI/Font_Test"]
 margin_left = 106.0
 margin_top = 422.0
 margin_right = 1090.0
@@ -406,15 +405,15 @@ text = "Current Font"
 align = 1
 valign = 1
 
-[node name="User_Text" type="TextEdit" parent="GUI/Lang_Test"]
+[node name="User_Text" type="TextEdit" parent="GUI/Font_Test"]
 margin_left = 102.0
 margin_top = 470.0
-margin_right = 1086.0
-margin_bottom = 630.0
-text = "Paste your text here!"
+margin_right = 1227.0
+margin_bottom = 631.0
+text = "Write here!"
 show_line_numbers = true
 
-[node name="BTN_Select_Font" type="Button" parent="GUI/Lang_Test"]
+[node name="BTN_Select_Font" type="Button" parent="GUI/Font_Test"]
 margin_left = 231.0
 margin_top = 657.0
 margin_right = 351.0
@@ -424,7 +423,7 @@ enabled_focus_mode = 0
 text = "Select Font"
 icon_align = 1
 
-[node name="BTN_Close" type="Button" parent="GUI/Lang_Test"]
+[node name="BTN_Close" type="Button" parent="GUI/Font_Test"]
 margin_left = 62.0
 margin_top = 656.0
 margin_right = 182.0
@@ -433,7 +432,7 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Close"
 
-[node name="OpenFile" type="FileDialog" parent="GUI/Lang_Test"]
+[node name="OpenFile" type="FileDialog" parent="GUI/Font_Test"]
 margin_left = 231.0
 margin_top = 164.0
 margin_right = 828.0
@@ -443,13 +442,56 @@ resizable = true
 mode = 0
 access = 2
 
-[node name="SEL_Font_Size" type="OptionButton" parent="GUI/Lang_Test"]
-margin_left = 409.0
-margin_top = 666.0
-margin_right = 623.0
-margin_bottom = 698.0
+[node name="BTN_Minus_x2" type="Button" parent="GUI/Font_Test"]
+margin_left = 430.0
+margin_top = 656.0
+margin_right = 509.0
+margin_bottom = 700.0
+hint_tooltip = "-2,, hold SHIFT for -20."
 focus_mode = 0
 enabled_focus_mode = 0
+text = "<<"
+
+[node name="BTN_Minus" type="Button" parent="GUI/Font_Test"]
+margin_left = 525.0
+margin_top = 656.0
+margin_right = 604.0
+margin_bottom = 700.0
+hint_tooltip = "-1, hold SHIFT for -10."
+focus_mode = 0
+enabled_focus_mode = 0
+text = "<"
+
+[node name="BTN_Font_Size" type="Button" parent="GUI/Font_Test"]
+margin_left = 621.0
+margin_top = 656.0
+margin_right = 700.0
+margin_bottom = 700.0
+hint_tooltip = "Reset font size to default."
+focus_mode = 0
+enabled_focus_mode = 0
+text = "SIZE"
+flat = true
+
+[node name="BTN_Plus" type="Button" parent="GUI/Font_Test"]
+margin_left = 714.0
+margin_top = 657.0
+margin_right = 793.0
+margin_bottom = 701.0
+hint_tooltip = "+1, hold SHIFT for +10."
+focus_mode = 0
+enabled_focus_mode = 0
+text = ">"
+
+[node name="BTN_Plus_x2" type="Button" parent="GUI/Font_Test"]
+margin_left = 809.0
+margin_top = 656.0
+margin_right = 888.0
+margin_bottom = 700.0
+hint_tooltip = "+2, hold SHIFT for +20."
+focus_mode = 0
+enabled_focus_mode = 0
+text = ">>"
 
 [node name="About" type="Control" parent="GUI"]
 visible = false
@@ -513,26 +555,17 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Close"
 
-[node name="BTN_License" type="Button" parent="GUI/About"]
-margin_left = 46.0
-margin_top = 632.0
-margin_right = 166.0
-margin_bottom = 682.0
+[node name="BTN_About" type="Button" parent="GUI/About"]
+margin_left = 269.0
+margin_top = 629.0
+margin_right = 389.0
+margin_bottom = 679.0
 focus_mode = 0
 disabled = true
 enabled_focus_mode = 0
-text = "License"
+text = "About"
 
-[node name="BTN_Used_Res" type="Button" parent="GUI/About"]
-margin_left = 232.0
-margin_top = 634.0
-margin_right = 352.0
-margin_bottom = 684.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Third party"
-
-[node name="TXT_License" type="TextEdit" parent="GUI/About"]
+[node name="TXT_About" type="TextEdit" parent="GUI/About"]
 margin_left = 48.0
 margin_top = 185.0
 margin_right = 1210.0
@@ -544,10 +577,32 @@ text = " Attention! It is not recommended to compare the results of different ve
  GitHub:  https://github.com/Shedou/ChimbaBench
  Overclockers Blog:  https://overclockers.ru/blog/Hard-Workshop
  Godot Engine:  https://godotengine.org
+ 
  AlternativeTo (Crowdsourced Software Recomendations):
- ( https://alternativeto.net/software/chimbabench/about )
- ___________________________________________________________________
- ChimbaBench
+ ( https://alternativeto.net/software/chimbabench/about )"
+readonly = true
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+wrap_enabled = true
+minimap_width = 100
+
+[node name="BTN_License" type="Button" parent="GUI/About"]
+margin_left = 619.0
+margin_top = 632.0
+margin_right = 739.0
+margin_bottom = 682.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "License"
+
+[node name="TXT_License" type="TextEdit" parent="GUI/About"]
+visible = false
+margin_left = 48.0
+margin_top = 185.0
+margin_right = 1210.0
+margin_bottom = 612.0
+text = " ChimbaBench
  Copyright (C) 2023 Chimbal
 
  This program is free software: you can redistribute it and/or modify
@@ -596,8 +651,16 @@ virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 wrap_enabled = true
-scroll_vertical = 30.0
 minimap_width = 100
+
+[node name="BTN_Used" type="Button" parent="GUI/About"]
+margin_left = 471.0
+margin_top = 632.0
+margin_right = 591.0
+margin_bottom = 682.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Third party"
 
 [node name="TXT_Used" type="TextEdit" parent="GUI/About"]
 visible = false
@@ -687,7 +750,7 @@ fov = 95.0
 [connection signal="pressed" from="GUI/Main_Controls/BTN_SBox" to="GUI/Main_Controls" method="_on_BTN_SBox_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_GPU_Heavy" to="GUI/Main_Controls" method="_on_BTN_GPU_Heavy_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_Settings" to="GUI" method="_on_BTN_Settings_pressed"]
-[connection signal="pressed" from="GUI/Main_Controls/BTN_Lang_Test" to="GUI" method="_on_BTN_LangTest_pressed"]
+[connection signal="pressed" from="GUI/Main_Controls/BTN_Font_Test" to="GUI" method="_on_BTN_FontTest_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_About" to="GUI" method="_on_BTN_About_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_System_Info" to="GUI" method="_on_BTN_SystemInfo_pressed"]
 [connection signal="pressed" from="GUI/Main_Controls/BTN_Exit" to="GUI/Main_Controls" method="_on_BTN_Exit_pressed"]
@@ -709,15 +772,20 @@ fov = 95.0
 [connection signal="item_selected" from="GUI/Settings/SEL_Aniso" to="GUI/Settings" method="_on_SEL_Aniso_item_selected"]
 [connection signal="item_selected" from="GUI/Settings/SEL_resolution" to="GUI/Settings" method="_on_SEL_resolution_item_selected"]
 [connection signal="toggled" from="GUI/Settings/CHECK_Fullscreen" to="GUI/Settings" method="_on_CHECK_Fullscreen_toggled"]
-[connection signal="pressed" from="GUI/Lang_Test/BTN_Select_Font" to="GUI/Lang_Test" method="_on_BTN_SelectFont_pressed"]
-[connection signal="pressed" from="GUI/Lang_Test/BTN_Close" to="GUI/Lang_Test" method="_on_BTN_Close_pressed"]
-[connection signal="file_selected" from="GUI/Lang_Test/OpenFile" to="GUI/Lang_Test" method="_on_OpenFile_file_selected"]
-[connection signal="item_selected" from="GUI/Lang_Test/SEL_Font_Size" to="GUI/Lang_Test" method="_on_SEL_Font_Size_item_selected"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Select_Font" to="GUI/Font_Test" method="_on_BTN_SelectFont_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Close" to="GUI/Font_Test" method="_on_BTN_Close_pressed"]
+[connection signal="file_selected" from="GUI/Font_Test/OpenFile" to="GUI/Font_Test" method="_on_OpenFile_file_selected"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Minus_x2" to="GUI/Font_Test" method="_on_BTN_Minus_x2_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Minus" to="GUI/Font_Test" method="_on_BTN_Minus_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Font_Size" to="GUI/Font_Test" method="_on_BTN_Font_Size_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Plus" to="GUI/Font_Test" method="_on_BTN_Plus_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Plus_x2" to="GUI/Font_Test" method="_on_BTN_Plus_x2_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Overs" to="GUI/About" method="_on_Link_Overs_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Git" to="GUI/About" method="_on_Link_Git_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Godot" to="GUI/About" method="_on_Link_Godot_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_Close" to="GUI/About" method="_on_BTN_Close_pressed"]
+[connection signal="pressed" from="GUI/About/BTN_About" to="GUI/About" method="_on_BTN_About_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_License" to="GUI/About" method="_on_BTN_License_pressed"]
-[connection signal="pressed" from="GUI/About/BTN_Used_Res" to="GUI/About" method="_on_BTN_Used_Res_pressed"]
+[connection signal="pressed" from="GUI/About/BTN_Used" to="GUI/About" method="_on_BTN_Used_pressed"]
 [connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Message/BTN_Save" to="GUI/Message" method="_on_BTN_Save_pressed"]

@@ -1,13 +1,16 @@
 extends Control
 
+const root = "/root/ChimbaBench";
 var chi_render_size = Vector2(0, 0);
+
 var chi_btn_size = Vector2(0, 0);
+var chi_btn_box_size = Vector2(0, 0);
 
 func _ready():
-	if $"/root/ChimbaBench".chi_OS == "Windows":
+	if get_node(root).chi_OS == "Windows":
 		$Win.visible = true;
 		$Lin.visible = false;
-	if $"/root/ChimbaBench".chi_OS == "X11":
+	if get_node(root).chi_OS == "X11":
 		$Win.visible = false;
 		$Lin.visible = true;
 
@@ -16,8 +19,8 @@ func on_resize():
 	$Lin.rect_size = chi_render_size;
 	$BTN_Close.rect_position = Vector2(20, (chi_render_size.y - 20) - $BTN_Close.rect_size.y);
 	
-	if $"/root/ChimbaBench".chi_OS == "Windows": adaptive_buttons_windows();
-	if $"/root/ChimbaBench".chi_OS == "X11": adaptive_buttons_linux();
+	if get_node(root).chi_OS == "Windows": adaptive_buttons_windows();
+	if get_node(root).chi_OS == "X11": adaptive_buttons_linux();
 
 func adaptive_buttons_windows():
 	$Win/BTN_Win_WMI.rect_position = Vector2(20, 20);

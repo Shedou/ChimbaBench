@@ -1,10 +1,12 @@
 extends Control
 
+const root = "/root/ChimbaBench";
 var chi_render_size = Vector2(0, 0);
+
 var chi_btn_size = Vector2(0, 0);
+var chi_btn_box_size = Vector2(0, 0);
 
 func on_resize():
-	
 	$LBL_BTN_Main_Menu.rect_position = Vector2(10, chi_render_size.y - 40 - chi_btn_size.y * 4);
 	$BTN_System_Info.rect_position = Vector2(10, chi_render_size.y - 30 - chi_btn_size.y * 3);
 	$BTN_Settings.rect_position = Vector2(10, chi_render_size.y - 20 - chi_btn_size.y * 2);
@@ -15,7 +17,7 @@ func on_resize():
 	$BTN_SBox.rect_position = Vector2(20 + chi_btn_size.x, chi_render_size.y - 10 - chi_btn_size.y);
 	
 	$LBL_BTN_Other.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 30 - chi_btn_size.y * 3);
-	$BTN_Lang_Test.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 20 - chi_btn_size.y * 2);
+	$BTN_Font_Test.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 20 - chi_btn_size.y * 2);
 	$BTN_About.rect_position = Vector2(chi_render_size.x - 10 - chi_btn_size.x, chi_render_size.y - 10 - chi_btn_size.y);
 
 func _on_BTN_Exit_pressed():

@@ -1,7 +1,10 @@
 extends Control
 
+const root = "/root/ChimbaBench";
 var chi_render_size = Vector2(0, 0);
+
 var chi_btn_size = Vector2(0, 0);
+var chi_btn_box_size = Vector2(0, 0);
 
 func on_resize():
 	$CAPT.rect_size.x = chi_render_size.x - 20;
@@ -25,10 +28,10 @@ func _on_BTN_Save_pressed():
 	var date = str(Time.get_date_string_from_system());
 	var time = str(Time.get_time_string_from_system());
 	
-	if $"/root/ChimbaBench".chi_OS == "Windows":
+	if get_node(root).chi_OS == "Windows":
 		time = time.replace(":",";");
 	
-	var chi_exe = $"../..".chi_executable_dir;
+	var chi_exe = get_node(root).chi_executable_dir;
 	var chi_path = chi_exe + "/Saved_Info";
 	var chi_full_path = str(chi_path, "/", $CAPT.text, " - ", date, " - ", time, ".txt");
 	if not chi_dir.dir_exists(chi_path):
