@@ -26,13 +26,13 @@ func _on_BTN_NeoFetch_pressed():
 	chi_os_exe_command("NeoFetch", "bash", [chi_exe_dir + "/Tools_Linux/neofetch710/neofetch", "--stdout", "--color_blocks off"], true);
 
 func _on_BTN_dmidecode35_pressed():
-	chi_os_exe_command("DMI Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmidecode35/dmidecode"], true);
+	chi_os_exe_command("DMI Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmi_decode_35/dmidecode.exec"], true);
 
 func _on_BTN_biosdecode35_pressed():
-	chi_os_exe_command("BIOS Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmidecode35/biosdecode"], true);
+	chi_os_exe_command("BIOS Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmi_decode_35/biosdecode.exec"], true);
 
 func _on_BTN_vpddecode35_pressed():
-	chi_os_exe_command("VPD Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmidecode35/vpddecode"], true);
+	chi_os_exe_command("VPD Decode v3.5", "pkexec", [chi_exe_dir + "/Tools_Linux/dmi_decode_35/vpddecode.exec"], true);
 
 func _on_BTN_lscpu_pressed():
 	chi_os_exe_command("CPU Info", "lscpu", []);
@@ -47,6 +47,9 @@ func _on_BTN_lsusb_pressed():
 
 func _on_BTN_lspci_pressed():
 	chi_os_exe_command("PCI Info", "lspci", ["-v"]);
+
+func _on_BTN_LSHW_pressed():
+	chi_os_exe_command("HardWare LiSter B.02.19", "pkexec", [chi_exe_dir + "/Tools_Linux/lshw_B219/lshw_B2_19.exec"], true);
 
 func chi_os_exe_command(cname:String, command:String, args = [], chmod:bool = false, append:bool = false, block:bool = true, stderr:bool = false, open_console:bool = false):
 	# Example use (Linux):      chi_os_exe_command("CPU Info", "lscpu");

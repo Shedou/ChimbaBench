@@ -17,7 +17,6 @@ extends Spatial
 
 const root = "/root/ChimbaBench";
 const node_gui = root + "/GUI";
-const node_gui_info = root + "/GUI/GUI_Info";
 const node_main_controls = root + "/GUI/Main_Controls";
 const node_system_info = root + "/GUI/System_Info";
 const node_settings = root + "/GUI/Settings";
@@ -27,11 +26,11 @@ const node_message = root + "/GUI/Message";
 
 var chi_executable_dir = OS.get_executable_path().get_base_dir();
 var chi_OS = OS.get_name();
-var chi_smi_enabled = 0;
+
+var chi_keys = { "shift": 0 };
 
 var chi_nodes = {
 	"node_gui" : node_gui,
-	"node_gui_info" : node_gui_info,
 	"node_main_controls" : node_main_controls,
 	"node_system_info" : node_system_info,
 	"node_settings" : node_settings,
@@ -42,34 +41,24 @@ var chi_nodes = {
 
 var chi_backgrounds = {
 	"bg_system_info" : node_system_info + "/Background",
-	"bg_settings" : node_settings + "/Background", "bg_font_test" : node_font_test + "/Background",
-	"bg_about" : node_about + "/Background", "bg_message" : node_message + "/Background"
-	};
-
-var chi_other = {
-	"check_fullscreen" : node_settings + "/CHECK_Fullscreen",
-	"lang_user_text" : node_font_test + "/User_Text",
-	"message_msg" : node_message + "/MSG",
-	"txt_about_about" : node_about + "/TXT_About",
-	"txt_about_license" : node_about + "/TXT_License",
-	"txt_about_used" : node_about + "/TXT_Used"
+	"bg_settings" : node_settings + "/Background",
+	"bg_font_test" : node_font_test + "/Background",
+	"bg_about" : node_about + "/Background",
+	"bg_message" : node_message + "/Background",
 	};
 
 var chi_sel = {
 	"sel_settings_msaa" : node_settings + "/SEL_MSAA",
 	"sel_settings_aniso" : node_settings + "/SEL_Aniso",
-	"sel_settings_resolution" : node_settings + "/SEL_resolution"
+	"sel_settings_resolution" : node_settings + "/SEL_resolution",
 	};
 
 var chi_labels = {
 	"sysi_text_portable" : node_system_info + "/Lin/Portable",
 	"sysi_text_system" : node_system_info + "/Lin/System",
 	"lang_langs_main" : node_font_test + "/Langs_Main",
-	"lang_langs_other" : node_font_test + "/Langs_Other",
 	"lang_font_current" : node_font_test + "/Font_Current",
 	"message_capt" : node_message + "/CAPT",
-	"guii_nvidia_smi" : "/root/ChimbaBench/GUI/GUI_Info/NvidiaSmiInfo",
-	"guii_debug_info" : "/root/ChimbaBench/GUI/GUI_Info/DebugInfo"
 	};
 
 var chi_btn_gui = {
@@ -85,10 +74,10 @@ var chi_btn_gui = {
 	"lbl_btn_other" : node_main_controls + "/LBL_BTN_Other",
 	"btn_settings_close" : node_settings + "/BTN_Close",
 	"btn_settings_save" : node_settings + "/BTN_Save",
-	"btn_settings_save_restart" : node_settings + "/BTN_Save_Restart",
 	"btn_sysi_close" : node_system_info +"/BTN_Close",
 	"btn_sysi_win_wmi" : node_system_info + "/Win/BTN_Win_WMI",
 	"btn_sysi_win_sys" : node_system_info + "/Win/BTN_Sys_Info",
+	"btn_sysi_win_drv" : node_system_info + "/Win/BTN_Drv_Query",
 	"btn_sysi_Lin_neo" : node_system_info + "/Lin/BTN_NeoFetch",
 	"btn_sysi_Lin_dmi" : node_system_info + "/Lin/BTN_dmidecode35",
 	"btn_sysi_Lin_dmi_bios" : node_system_info + "/Lin/BTN_biosdecode35",
@@ -97,21 +86,42 @@ var chi_btn_gui = {
 	"btn_sysi_Lin_proc_cpu" : node_system_info + "/Lin/BTN_proc_cpu",
 	"btn_sysi_Lin_lsusb" : node_system_info + "/Lin/BTN_lsusb",
 	"btn_sysi_Lin_lspci" : node_system_info + "/Lin/BTN_lspci",
+	"btn_sysi_Lin_lshw" : node_system_info + "/Lin/BTN_LSHW",
 	"btn_font_close" : node_font_test + "/BTN_Close",
 	"btn_font_select_font" : node_font_test + "/BTN_Select_Font",
 	"btn_about_close" : node_about + "/BTN_Close",
 	"btn_about_used_res" : node_about + "/BTN_Used",
 	"btn_about_license" : node_about + "/BTN_License",
+	"btn_about_4b" : node_about + "/BTN_4B",
 	"btn_about_about" : node_about + "/BTN_About",
 	"btn_message_close" : node_message + "/BTN_Close",
-	"btn_message_save" : node_message + "/BTN_Save"
+	"btn_message_save" : node_message + "/BTN_Save",
 	};
-var chi_btn_box_gui = {
+
+var chi_short_gui = {
 	"btn_font_minus_x2" : node_font_test + "/BTN_Minus_x2",
 	"btn_font_minus" : node_font_test + "/BTN_Minus",
 	"btn_font_font_size" : node_font_test + "/BTN_Font_Size",
 	"btn_font_plus" : node_font_test + "/BTN_Plus",
-	"btn_font_plus_x2" : node_font_test + "/BTN_Plus_x2"
+	"btn_font_plus_x2" : node_font_test + "/BTN_Plus_x2",
+	};
+
+var chi_wide_gui = {
+	"line_from" : node_font_test + "/LINE_From",
+	"line_to" : node_font_test + "/LINE_To",
+	"btn_set" : node_font_test + "/BTN_Set",
+	"btn_help" : node_font_test + "/BTN_Help",
+	};
+
+var chi_other = {
+	"check_fullscreen" : node_settings + "/CHECK_Fullscreen",
+	"lang_user_text" : node_font_test + "/User_Text",
+	"lbl_spacer" : node_font_test + "/LBL_Spacer",
+	"message_msg" : node_message + "/MSG",
+	"txt_about_about" : node_about + "/TXT_About",
+	"txt_about_license" : node_about + "/TXT_License",
+	"txt_about_used" : node_about + "/TXT_Used",
+	"txt_about_4b" : node_about + "/TXT_4B",
 	};
 
 func _ready():
@@ -119,6 +129,9 @@ func _ready():
 	
 	$GUI/Settings.chi_settings_load_from_file();
 	get_tree().get_root().connect("size_changed", self, "on_resize");
+	
+	get_node("GUI/GUI_BaseInfo/BasePerfInfo").chi_aniso_read();
+	
 	on_resize();
 
 func on_resize():
@@ -136,4 +149,11 @@ func chi_show_message(message = "Warning!", caption = "Warning!"):
 		get_node(chi_nodes["node_message"]).visible = true;
 		get_node(chi_labels["message_capt"]).text = caption;
 		get_node(chi_other["message_msg"]).text = "- " + str(message);
-	
+
+func _input(event):
+	if event.is_action_pressed("shift"):
+		chi_keys["shift"] = 1;
+		get_node(node_font_test).chi_keys["shift"] = 1;
+	if event.is_action_released("shift"):
+		chi_keys["shift"] = 0;
+		get_node(node_font_test).chi_keys["shift"] = 0;

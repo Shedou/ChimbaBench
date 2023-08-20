@@ -6,7 +6,8 @@ var chi_render_size = Vector2(0, 0);
 var chi_desktop_size = Vector2(0, 0);
 
 var chi_btn_size = Vector2(0, 0);
-var chi_btn_box_size = Vector2(0, 0);
+var chi_short_size = Vector2(0, 0);
+var chi_wide_size = Vector2(0, 0);
 
 var chi_exe_directory;
 var chi_sett_d = Directory.new();
@@ -30,6 +31,10 @@ var chi_resols = {
 	16:3440,116:1440 };
 
 var chi_aniso_id = { 1:0, 2:1, 4:2, 8:3, 16:4 };
+var chi_aniso_sel = 0;
+var chi_aniso = 0;
+
+var chi_restart_need = 0;
 
 func _ready():
 	chi_desktop_size = OS.get_screen_size();
@@ -43,7 +48,6 @@ func _ready():
 func on_resize():
 	$BTN_Close.rect_position = Vector2(20, (chi_render_size.y - 20) - chi_btn_size.y);
 	$BTN_Save.rect_position = Vector2(30 + chi_btn_size.x, (chi_render_size.y - 20) - chi_btn_size.y);
-	$BTN_Save_Restart.rect_position = Vector2(40 + chi_btn_size.x * 2, (chi_render_size.y - 20) - chi_btn_size.y);
 	
 	$SEL_MSAA.rect_position = Vector2(20, 20);
 	$SEL_Aniso.rect_position = Vector2(20, 30 + $SEL_MSAA.rect_size.y);
@@ -78,6 +82,7 @@ func chi_settings_load_from_file():
 			chi_screen_set(chi_sett.get_value("Main", "Fullscreen"), chi_sett.get_value("Main", "Resolution"));
 			$SEL_resolution.select($SEL_resolution.get_item_id(chi_resolution));
 			ProjectSettings.set_setting("window/size/resizable", false);
+	chi_aniso_sel = ProjectSettings.get_setting("rendering/quality/filters/anisotropic_filter_level");
 
 func chi_screen_set(fullscreen, resolution):
 	if fullscreen == true:
@@ -143,9 +148,10 @@ func _on_SEL_MSAA_item_selected(index):
 	$SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
 
 func _on_SEL_Aniso_item_selected(index):
-	ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", $SEL_Aniso.get_item_id(index));
-	get_node(root + "/GUI/GUI_BaseInfo/BasePerfInfo").chi_msaa_aniso_read();
-	get_node(root).chi_show_message("Anisotropic filtering does not change without a full program restart!\nUse the \"Save and restart\" button to change anisotropic level, or manually restart the programm!", "Attention!");
+	if chi_aniso_sel != $SEL_Aniso.get_item_id(index):
+		chi_restart_need = 1;
+		chi_aniso = index;
+		get_node(root + "/GUI/Settings/BTN_Save").text = "Save and restart";
 
 func _on_SEL_resolution_item_selected(index):
 	if chi_resol_fullscreen == false and chi_desktop_size.x >= chi_resols[$SEL_resolution.get_item_id(index)] and chi_desktop_size.y >= chi_resols[$SEL_resolution.get_item_id(index)+100]:
@@ -169,10 +175,11 @@ func _on_CHECK_Fullscreen_toggled(button_pressed):
 		$SEL_resolution.disabled = false;
 
 func _on_BTN_Save_pressed():
-	if chi_settings_save_to_file() == 1:
+	if chi_settings_save_to_file() == 1 and chi_restart_need == 0:
 		get_node(root).chi_show_message("Settings saved to file:\n" + str(chi_sett_file), "Settings Saved!");
-
-func _on_BTN_Save_Restart_pressed():
-	if chi_settings_save_to_file() == 1:
+	if chi_settings_save_to_file() == 1 and chi_restart_need == 1:
+		ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", $SEL_Aniso.get_item_id(chi_aniso));
 		OS.execute(OS.get_executable_path(), [], false);
 		get_tree().quit();
+	if chi_settings_save_to_file() != 1:
+		get_node(root).chi_show_message("Something went wrong...", "Warning!");

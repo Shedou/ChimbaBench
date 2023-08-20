@@ -53,3 +53,5 @@ func _on_BTN_Win_WMI_pressed():
 func _on_BTN_Sys_Info_pressed():
 	chi_os_exe_command("System Info", "systeminfo", []);
 	
+func _on_BTN_Drv_Query_pressed():
+	chi_os_exe_command("System Info", "driverquery", []);

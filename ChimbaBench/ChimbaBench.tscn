@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/ChimbaBench.gd" type="Script" id=1]
 [ext_resource path="res://GUI/BaseInfo/GUI_BaseInfo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Main_Controls.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/NvidiaSmiInfo.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=5]
 [ext_resource path="res://Textures/Overs_normal.png" type="Texture" id=6]
 [ext_resource path="res://Textures/yaica_.webp" type="Texture" id=7]
@@ -17,7 +16,6 @@
 [ext_resource path="res://Textures/git_hover.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/SysInfo/Win.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/SysInfo/Lin.gd" type="Script" id=18]
-[ext_resource path="res://Scripts/GUI_Info.gd" type="Script" id=19]
 [ext_resource path="res://Textures/godot_hover.png" type="Texture" id=20]
 [ext_resource path="res://Textures/godot_normal.png" type="Texture" id=21]
 
@@ -35,25 +33,6 @@ script = ExtResource( 10 )
 [node name="GUI_BaseInfo" parent="GUI" instance=ExtResource( 2 )]
 margin_right = 57.0
 margin_bottom = 60.0
-
-[node name="GUI_Info" type="Control" parent="GUI"]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
-script = ExtResource( 19 )
-
-[node name="NvidiaSmiInfo" type="Label" parent="GUI/GUI_Info"]
-margin_left = 10.0
-margin_top = 150.0
-margin_right = 512.0
-margin_bottom = 214.0
-script = ExtResource( 4 )
-
-[node name="DebugInfo" type="Label" parent="GUI/GUI_Info"]
-margin_left = 14.0
-margin_top = 469.0
-margin_right = 486.0
-margin_bottom = 533.0
 
 [node name="Main_Controls" type="Control" parent="GUI"]
 margin_right = 1279.0
@@ -76,7 +55,7 @@ margin_left = 193.0
 margin_top = 585.0
 margin_right = 313.0
 margin_bottom = 635.0
-hint_tooltip = "A simple test with a textured box."
+hint_tooltip = "GPU Heavy test, much harder for graphics card than Simple Box..."
 focus_mode = 0
 enabled_focus_mode = 0
 text = "GPU Heavy"
@@ -166,8 +145,8 @@ color = Color( 0, 0.0862745, 0.0431373, 0.886275 )
 
 [node name="Win" type="Control" parent="GUI/System_Info"]
 visible = false
-margin_right = 1039.0
-margin_bottom = 516.0
+margin_right = 1269.0
+margin_bottom = 717.0
 script = ExtResource( 17 )
 
 [node name="BTN_Win_WMI" type="Button" parent="GUI/System_Info/Win"]
@@ -180,13 +159,22 @@ enabled_focus_mode = 0
 text = "WMI Info"
 
 [node name="BTN_Sys_Info" type="Button" parent="GUI/System_Info/Win"]
-margin_left = 7.0
-margin_top = 133.0
-margin_right = 187.0
-margin_bottom = 183.0
+margin_left = 29.0
+margin_top = 95.0
+margin_right = 209.0
+margin_bottom = 145.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "System Info"
+
+[node name="BTN_Drv_Query" type="Button" parent="GUI/System_Info/Win"]
+margin_left = 28.0
+margin_top = 165.0
+margin_right = 208.0
+margin_bottom = 215.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Driver Query"
 
 [node name="Lin" type="Control" parent="GUI/System_Info"]
 visible = false
@@ -221,31 +209,40 @@ enabled_focus_mode = 0
 text = "NeoFetch Info"
 
 [node name="BTN_dmidecode35" type="Button" parent="GUI/System_Info/Lin"]
-margin_left = 242.0
-margin_top = 50.0
-margin_right = 422.0
-margin_bottom = 100.0
+margin_left = 24.0
+margin_top = 121.0
+margin_right = 204.0
+margin_bottom = 171.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "DMI Decode v3.5"
 
 [node name="BTN_biosdecode35" type="Button" parent="GUI/System_Info/Lin"]
-margin_left = 242.0
-margin_top = 121.0
-margin_right = 422.0
-margin_bottom = 171.0
+margin_left = 22.0
+margin_top = 186.0
+margin_right = 202.0
+margin_bottom = 236.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "BIOS Decode v3.5"
 
 [node name="BTN_vpddecode35" type="Button" parent="GUI/System_Info/Lin"]
-margin_left = 241.0
-margin_top = 192.0
-margin_right = 421.0
-margin_bottom = 242.0
+margin_left = 24.0
+margin_top = 256.0
+margin_right = 204.0
+margin_bottom = 306.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "VPD Decode v3.5"
+
+[node name="BTN_LSHW" type="Button" parent="GUI/System_Info/Lin"]
+margin_left = 233.0
+margin_top = 46.0
+margin_right = 413.0
+margin_bottom = 96.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "HardWare LiSter"
 
 [node name="BTN_lscpu" type="Button" parent="GUI/System_Info/Lin"]
 margin_left = 1050.0
@@ -321,15 +318,6 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Save"
 
-[node name="BTN_Save_Restart" type="Button" parent="GUI/Settings"]
-margin_left = 326.0
-margin_top = 633.0
-margin_right = 486.0
-margin_bottom = 681.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Save and restart"
-
 [node name="SEL_MSAA" type="OptionButton" parent="GUI/Settings"]
 margin_left = 16.0
 margin_top = 79.0
@@ -386,15 +374,7 @@ margin_right = 540.0
 margin_bottom = 327.0
 text = "
 Main"
-
-[node name="Langs_Other" type="Label" parent="GUI/Font_Test"]
-visible = false
-margin_left = 48.0
-margin_top = 47.0
-margin_right = 540.0
-margin_bottom = 327.0
-text = "
-Two"
+autowrap = true
 
 [node name="Font_Current" type="Label" parent="GUI/Font_Test"]
 margin_left = 106.0
@@ -443,9 +423,9 @@ mode = 0
 access = 2
 
 [node name="BTN_Minus_x2" type="Button" parent="GUI/Font_Test"]
-margin_left = 430.0
+margin_left = 402.0
 margin_top = 656.0
-margin_right = 509.0
+margin_right = 481.0
 margin_bottom = 700.0
 hint_tooltip = "-2,, hold SHIFT for -20."
 focus_mode = 0
@@ -453,9 +433,9 @@ enabled_focus_mode = 0
 text = "<<"
 
 [node name="BTN_Minus" type="Button" parent="GUI/Font_Test"]
-margin_left = 525.0
+margin_left = 504.0
 margin_top = 656.0
-margin_right = 604.0
+margin_right = 583.0
 margin_bottom = 700.0
 hint_tooltip = "-1, hold SHIFT for -10."
 focus_mode = 0
@@ -463,9 +443,9 @@ enabled_focus_mode = 0
 text = "<"
 
 [node name="BTN_Font_Size" type="Button" parent="GUI/Font_Test"]
-margin_left = 621.0
+margin_left = 594.0
 margin_top = 656.0
-margin_right = 700.0
+margin_right = 673.0
 margin_bottom = 700.0
 hint_tooltip = "Reset font size to default."
 focus_mode = 0
@@ -474,29 +454,76 @@ text = "SIZE"
 flat = true
 
 [node name="BTN_Plus" type="Button" parent="GUI/Font_Test"]
-margin_left = 714.0
-margin_top = 657.0
-margin_right = 793.0
-margin_bottom = 701.0
+margin_left = 682.0
+margin_top = 656.0
+margin_right = 761.0
+margin_bottom = 700.0
 hint_tooltip = "+1, hold SHIFT for +10."
 focus_mode = 0
 enabled_focus_mode = 0
 text = ">"
 
 [node name="BTN_Plus_x2" type="Button" parent="GUI/Font_Test"]
-margin_left = 809.0
-margin_top = 656.0
-margin_right = 888.0
-margin_bottom = 700.0
+margin_left = 774.0
+margin_top = 655.0
+margin_right = 853.0
+margin_bottom = 699.0
 hint_tooltip = "+2, hold SHIFT for +20."
 focus_mode = 0
 enabled_focus_mode = 0
 text = ">>"
 
+[node name="LINE_From" type="LineEdit" parent="GUI/Font_Test"]
+margin_left = 873.0
+margin_top = 647.0
+margin_right = 933.0
+margin_bottom = 693.0
+custom_constants/minimum_spaces = 0
+align = 1
+max_length = 5
+placeholder_text = "code"
+
+[node name="LBL_Spacer" type="Label" parent="GUI/Font_Test"]
+margin_left = 942.0
+margin_top = 646.0
+margin_right = 970.0
+margin_bottom = 692.0
+text = "-"
+align = 1
+valign = 1
+
+[node name="LINE_To" type="LineEdit" parent="GUI/Font_Test"]
+margin_left = 980.0
+margin_top = 648.0
+margin_right = 1040.0
+margin_bottom = 694.0
+custom_constants/minimum_spaces = 0
+align = 1
+max_length = 5
+placeholder_text = "code"
+
+[node name="BTN_Set" type="Button" parent="GUI/Font_Test"]
+margin_left = 774.0
+margin_top = 655.0
+margin_right = 853.0
+margin_bottom = 699.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Set"
+
+[node name="BTN_Help" type="Button" parent="GUI/Font_Test"]
+margin_left = 774.0
+margin_top = 655.0
+margin_right = 853.0
+margin_bottom = 699.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Help"
+
 [node name="About" type="Control" parent="GUI"]
 visible = false
-margin_right = 1004.0
-margin_bottom = 590.0
+margin_right = 1274.0
+margin_bottom = 714.0
 script = ExtResource( 13 )
 
 [node name="Background" type="ColorRect" parent="GUI/About"]
@@ -570,7 +597,7 @@ margin_left = 48.0
 margin_top = 185.0
 margin_right = 1210.0
 margin_bottom = 612.0
-text = " Attention! It is not recommended to compare the results of different versions of ChimbaBench.
+text = " Attention! It is not recommended to compare the results of different versions of benchmarks.
  ___________________________________________________________________
  Useful links:
 
@@ -677,11 +704,36 @@ text = " Fonts:
  Additional utilities used in the project can be found in the \"Tools_Linux\" folder:
  - DMI Decode (BIOS Decode, VPD Decode): ( https://dmidecode.nongnu.org ).
  - NeoFetch 7.10: ( https://github.com/dylanaraps/neofetch ).
+ - lshw - HardWare LiSter for Linux: (https://github.com/lyonel/lshw )
 
  Useful software:
 --- Graphics, textures, materials ---
  - Material Maker: ( https://github.com/RodZill4/material-maker ).
  - Krita: ( https://krita.org )."
+readonly = true
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+minimap_width = 100
+
+[node name="BTN_4B" type="Button" parent="GUI/About"]
+margin_left = 769.0
+margin_top = 632.0
+margin_right = 889.0
+margin_bottom = 682.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Not used"
+
+[node name="TXT_4B" type="TextEdit" parent="GUI/About"]
+visible = false
+margin_left = 48.0
+margin_top = 185.0
+margin_right = 1210.0
+margin_bottom = 612.0
+text = "
+ - Not used.
+"
 readonly = true
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
@@ -756,10 +808,12 @@ fov = 95.0
 [connection signal="pressed" from="GUI/Main_Controls/BTN_Exit" to="GUI/Main_Controls" method="_on_BTN_Exit_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Win/BTN_Win_WMI" to="GUI/System_Info/Win" method="_on_BTN_Win_WMI_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Win/BTN_Sys_Info" to="GUI/System_Info/Win" method="_on_BTN_Sys_Info_pressed"]
+[connection signal="pressed" from="GUI/System_Info/Win/BTN_Drv_Query" to="GUI/System_Info/Win" method="_on_BTN_Drv_Query_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_NeoFetch" to="GUI/System_Info/Lin" method="_on_BTN_NeoFetch_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_dmidecode35" to="GUI/System_Info/Lin" method="_on_BTN_dmidecode35_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_biosdecode35" to="GUI/System_Info/Lin" method="_on_BTN_biosdecode35_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_vpddecode35" to="GUI/System_Info/Lin" method="_on_BTN_vpddecode35_pressed"]
+[connection signal="pressed" from="GUI/System_Info/Lin/BTN_LSHW" to="GUI/System_Info/Lin" method="_on_BTN_LSHW_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_lscpu" to="GUI/System_Info/Lin" method="_on_BTN_lscpu_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_proc_cpu" to="GUI/System_Info/Lin" method="_on_BTN_proc_cpu_pressed"]
 [connection signal="pressed" from="GUI/System_Info/Lin/BTN_lsusb" to="GUI/System_Info/Lin" method="_on_BTN_lsusb_pressed"]
@@ -767,7 +821,6 @@ fov = 95.0
 [connection signal="pressed" from="GUI/System_Info/BTN_Close" to="GUI/System_Info" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Close" to="GUI/Settings" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Settings/BTN_Save" to="GUI/Settings" method="_on_BTN_Save_pressed"]
-[connection signal="pressed" from="GUI/Settings/BTN_Save_Restart" to="GUI/Settings" method="_on_BTN_Save_Restart_pressed"]
 [connection signal="item_selected" from="GUI/Settings/SEL_MSAA" to="GUI/Settings" method="_on_SEL_MSAA_item_selected"]
 [connection signal="item_selected" from="GUI/Settings/SEL_Aniso" to="GUI/Settings" method="_on_SEL_Aniso_item_selected"]
 [connection signal="item_selected" from="GUI/Settings/SEL_resolution" to="GUI/Settings" method="_on_SEL_resolution_item_selected"]
@@ -780,6 +833,8 @@ fov = 95.0
 [connection signal="pressed" from="GUI/Font_Test/BTN_Font_Size" to="GUI/Font_Test" method="_on_BTN_Font_Size_pressed"]
 [connection signal="pressed" from="GUI/Font_Test/BTN_Plus" to="GUI/Font_Test" method="_on_BTN_Plus_pressed"]
 [connection signal="pressed" from="GUI/Font_Test/BTN_Plus_x2" to="GUI/Font_Test" method="_on_BTN_Plus_x2_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Set" to="GUI/Font_Test" method="_on_BTN_Set_pressed"]
+[connection signal="pressed" from="GUI/Font_Test/BTN_Help" to="GUI/Font_Test" method="_on_BTN_Help_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Overs" to="GUI/About" method="_on_Link_Overs_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Git" to="GUI/About" method="_on_Link_Git_pressed"]
 [connection signal="pressed" from="GUI/About/Link_Godot" to="GUI/About" method="_on_Link_Godot_pressed"]
@@ -787,5 +842,6 @@ fov = 95.0
 [connection signal="pressed" from="GUI/About/BTN_About" to="GUI/About" method="_on_BTN_About_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_License" to="GUI/About" method="_on_BTN_License_pressed"]
 [connection signal="pressed" from="GUI/About/BTN_Used" to="GUI/About" method="_on_BTN_Used_pressed"]
+[connection signal="pressed" from="GUI/About/BTN_4B" to="GUI/About" method="_on_BTN_4B_pressed"]
 [connection signal="pressed" from="GUI/Message/BTN_Close" to="GUI/Message" method="_on_BTN_Close_pressed"]
 [connection signal="pressed" from="GUI/Message/BTN_Save" to="GUI/Message" method="_on_BTN_Save_pressed"]

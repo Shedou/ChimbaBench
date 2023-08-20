@@ -9,7 +9,7 @@ var chi_aniso_names = { 0:"0", 1:"Disabled", 2:"2x", 4:"4x", 8:"8x", 16:"16x" };
 
 func _ready():
 	chi_msaa_fxaa_read();
-	chi_msaa_aniso_read();
+	chi_aniso_read();
 
 func _physics_process(delta):
 	#yield(get_tree().create_timer(0.5), "timeout");
@@ -41,5 +41,5 @@ func chi_msaa_fxaa_read():
 	chi_aa.fxaa = ProjectSettings.get_setting("rendering/quality/filters/use_fxaa");
 	chi_aa.fxaa_sharp = ProjectSettings.get_setting("rendering/quality/filters/sharpen_intensity");
 	
-func chi_msaa_aniso_read():
+func chi_aniso_read():
 	chi_aa.anisotropy = ProjectSettings.get_setting("rendering/quality/filters/anisotropic_filter_level");

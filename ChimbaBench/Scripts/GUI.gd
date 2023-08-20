@@ -3,7 +3,6 @@ extends Control
 const root = "/root/ChimbaBench";
 var chi_render_size = Vector2(0, 0);
 
-
 var chi_font_base = DynamicFont.new();
 var chi_font_base_small = DynamicFont.new();
 
@@ -19,7 +18,8 @@ export(String, FILE) var font_data = "res://Fonts/determination2/determination2.
 
 
 var chi_btn_size = Vector2(0, 0);
-var chi_btn_box_size = Vector2(0, 0);
+var chi_short_size = Vector2(0, 0);
+var chi_wide_size = Vector2(0, 0);
 var chi_sel_size = Vector2(0, 0);
 export var chi_btn_mult = Vector2(6, 4);
 export var chi_btn_box_mult = Vector2(6, 1);
@@ -30,28 +30,33 @@ func _ready():
 	chi_locale_file = chi_exe_directory + "/Localization/GUI.cfg";
 	chi_locale_path = chi_exe_directory + "/Localization";
 
-	chi_font_base = chi_font_set();
-	chi_font_base_small = chi_font_set();
+	chi_font_base = chi_font_set(font_data);
+	chi_font_base_small = chi_font_set(font_data);
 	chi_font_apply();
-	chi_font_apply_text();
-	
+
 func on_resize():
 	chi_btn_size.x = chi_render_size.x / chi_btn_mult.x;
 	chi_btn_size.y = chi_btn_size.x / chi_btn_mult.y;
-	chi_btn_box_size.x = chi_btn_size.y;
-	chi_btn_box_size.y = chi_btn_box_size.x;
+	chi_short_size.x = chi_btn_size.y / 1.3;
+	chi_short_size.y = chi_short_size.x * 1.3;
+	
+	chi_wide_size.x = chi_btn_size.y * 1.5;
+	chi_wide_size.y = chi_wide_size.x / 1.5;
 	
 	chi_sel_size.x = chi_render_size.x / chi_sel_mult.x;
 	chi_sel_size.y = chi_sel_size.x / chi_sel_mult.y;
 	
 	for chi_item in get_node(root).chi_nodes:
 		get_node(get_node(root).chi_nodes[chi_item]).chi_btn_size = chi_btn_size;
-		get_node(get_node(root).chi_nodes[chi_item]).chi_btn_box_size = chi_btn_box_size;
+		get_node(get_node(root).chi_nodes[chi_item]).chi_short_size = chi_short_size;
+		get_node(get_node(root).chi_nodes[chi_item]).chi_wide_size = chi_wide_size;
 		get_node(get_node(root).chi_nodes[chi_item]).rect_size = chi_render_size;
 	for chi_item in get_node(root).chi_btn_gui:
 		get_node(get_node(root).chi_btn_gui[chi_item]).rect_size = chi_btn_size;
-	for chi_item in get_node(root).chi_btn_box_gui:
-		get_node(get_node(root).chi_btn_box_gui[chi_item]).rect_size = chi_btn_box_size;
+	for chi_item in get_node(root).chi_short_gui:
+		get_node(get_node(root).chi_short_gui[chi_item]).rect_size = chi_short_size;
+	for chi_item in get_node(root).chi_wide_gui:
+		get_node(get_node(root).chi_wide_gui[chi_item]).rect_size = chi_wide_size;
 	for chi_item in get_node(root).chi_sel:
 		get_node(get_node(root).chi_sel[chi_item]).rect_size = chi_sel_size;
 	for chi_item in get_node(root).chi_backgrounds:
@@ -86,18 +91,14 @@ func chi_font_apply():
 		get_node(get_node(root).chi_sel[chitem]).set("custom_fonts/font", chi_font_base);
 	for chitem in get_node(root).chi_btn_gui:
 		get_node(get_node(root).chi_btn_gui[chitem]).set("custom_fonts/font", chi_font_base);
-	for chitem in get_node(root).chi_btn_box_gui:
-		get_node(get_node(root).chi_btn_box_gui[chitem]).set("custom_fonts/font", chi_font_base);
+	for chitem in get_node(root).chi_short_gui:
+		get_node(get_node(root).chi_short_gui[chitem]).set("custom_fonts/font", chi_font_base);
+	for chitem in get_node(root).chi_wide_gui:
+		get_node(get_node(root).chi_wide_gui[chitem]).set("custom_fonts/font", chi_font_base_small);
 	for chitem in get_node(root).chi_other:
 		get_node(get_node(root).chi_other[chitem]).set("custom_fonts/font", chi_font_base);
-
-func chi_font_apply_text():
+	
 	get_node(get_node(root).chi_other["message_msg"]).set("custom_fonts/font", chi_font_base_small);
-
-func chi_font_set():
-	var font = DynamicFont.new();
-	font.font_data = load(font_data);
-	return font;
 
 func chi_font_set_settings(font, size, outliine_size = 0, outline_color:Color = Color(0.2, 0.2, 0.30, 1)):
 	font.size = size;
@@ -115,3 +116,8 @@ func _on_BTN_SystemInfo_pressed():
 
 func _on_BTN_FontTest_pressed():
 	get_node(get_node(root).node_font_test).visible = true;
+
+func chi_font_set(font_data:String):
+	var font = DynamicFont.new();
+	font.font_data = load(font_data);
+	return font;
