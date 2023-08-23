@@ -5,6 +5,23 @@
 
 A portable multifunctional application that includes performance tests and additional tools for obtaining information about the system.
 
+<details>
+  <summary>Возможности | Features:</summary>
+
+- **System Info:** Набор команд и дополнительных приложений для получения разнообразной информации.
+- **Font Test:** Здесь можно протестировать шрифты.
+- **Simple Box:** Простой тест производительности.
+- **GPU Heavy:** Более сложный тест производительности для видеокарт.
+
+English translation:
+
+- **System Info:** A set of commands and additional applications for obtaining a variety of information.
+- **Font Test:** Fonts can be tested here.
+- **Simple Box:** Simple performance test.
+- **GPU Heavy:** More difficult benchmark for graphics cards.
+
+</details>
+
 **ChimbaBench v2.2:**
 
 ||||
