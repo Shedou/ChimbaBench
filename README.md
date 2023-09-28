@@ -47,6 +47,16 @@ English translation:
 
 </details>
 
+## Известные проблемы | Known problems
+
+<details>
+  <summary>ChimbaBench v2.5 and older:</summary>
+
+- Длительность теста увеличивается если FPS ниже 8, результаты могут быть искажены. (неправильно работают стандартные таймеры Godot Engine если FPS ниже 8).
+- The duration of the test increases if FPS is below 8, the results may be distorted. (standard Godot Engine timers do not work correctly if FPS is below 8).
+
+</details>
+
 ## Системные требования | System requirements:
 - Windows 7+
 - Linux дистрибутивы 2013 года и новее | Linux distributions 2013 year and newer (requires GLIBC 2.17 or later)
