@@ -61,7 +61,7 @@ English translation:
 ## Системные требования | System requirements:
 - Windows 7+
 - Linux дистрибутивы 2013 года и новее | Linux distributions 2013 year and newer (requires GLIBC 2.17 or later)
-- OpenGL/ES 3.0
+- OpenGL 3.x (minimum OpenGL 2.1 / OpenGL ES 2.0)
 
 ## License "ChimbaBench"
 ChimbaBench\
