@@ -22,12 +22,16 @@ English translation:
 
 </details>
 
-**ChimbaBench v2.2:**
+**ChimbaBench v2.6:**
 
 ||||
 |---|---|---|
-| ![VirtualBox_(x64) Trusquel 11 KDE_25_06_2023_18_19_12~](https://github.com/Shedou/ChimbaBench/assets/19572158/a6c642b4-09e5-4c0f-a29f-1939fd00b2b4) | ![VirtualBox_(x64) Trusquel 11 KDE_25_06_2023_18_19_55~](https://github.com/Shedou/ChimbaBench/assets/19572158/129be39d-c389-4760-be05-6d38e7e5aa51) | ![VirtualBox_(x64) Trusquel 11 KDE_25_06_2023_18_19_36~](https://github.com/Shedou/ChimbaBench/assets/19572158/b1262304-f50d-447f-832d-ce8a3f57a0b2) |
-| ![VirtualBox_(x64) Trusquel 11 KDE_25_06_2023_18_21_25~](https://github.com/Shedou/ChimbaBench/assets/19572158/7ca5170a-1c06-45fa-b6ae-498e07afd1e6) | ![Screenshot_30~](https://github.com/Shedou/ChimbaBench/assets/19572158/45197176-953e-4824-910f-5a7edd1144ca) | ![Screenshot_31~](https://github.com/Shedou/ChimbaBench/assets/19572158/59512d25-e899-41cb-862d-31bf5004e4ce) |
+| ![Screenshot_2023-10-04_22-34-50](https://github.com/Shedou/ChimbaBench/assets/19572158/84479f55-b70a-4337-9562-a3503c91f377) | ![Screenshot_2023-10-04_22-34-56](https://github.com/Shedou/ChimbaBench/assets/19572158/906fc4ad-817b-48f9-b33e-f9d74f73cc94) | ![Screenshot_2023-10-04_22-35-03](https://github.com/Shedou/ChimbaBench/assets/19572158/48794d3e-52f5-47cc-90f4-a0a3f292ec0c) |
+| ![Screenshot_2023-10-04_22-35-43](https://github.com/Shedou/ChimbaBench/assets/19572158/f66ec95b-0bf5-44bf-a1c0-9928f4f43860) | ![Screenshot_2023-10-04_22-35-53](https://github.com/Shedou/ChimbaBench/assets/19572158/660dec3b-2978-430f-93a7-098b0f8bb980) | ![Screenshot_2023-10-04_22-36-11](https://github.com/Shedou/ChimbaBench/assets/19572158/8316ad36-184f-4c1e-8c9b-1e32169fc96a) |
+
+|||
+|---|---|
+| ![Screenshot_2023-10-04_22-38-05](https://github.com/Shedou/ChimbaBench/assets/19572158/c95a4fd9-c062-4e2d-b16e-331bf7382d57) | ![Screenshot_2023-10-04_22-39-41](https://github.com/Shedou/ChimbaBench/assets/19572158/9491cc79-7015-467e-aefd-8c04d4ba136a) |
 
 ## Загрузки | Downloads
 ### Текущая версия | Current version: [ChimbaBench v2.6](https://github.com/Shedou/ChimbaBench/releases/tag/v26) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v26/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v26)
