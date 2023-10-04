@@ -30,11 +30,12 @@ English translation:
 | ![VirtualBox_(x64) Trusquel 11 KDE_25_06_2023_18_21_25~](https://github.com/Shedou/ChimbaBench/assets/19572158/7ca5170a-1c06-45fa-b6ae-498e07afd1e6) | ![Screenshot_30~](https://github.com/Shedou/ChimbaBench/assets/19572158/45197176-953e-4824-910f-5a7edd1144ca) | ![Screenshot_31~](https://github.com/Shedou/ChimbaBench/assets/19572158/59512d25-e899-41cb-862d-31bf5004e4ce) |
 
 ## Загрузки | Downloads
-### Текущая версия | Current version: [ChimbaBench v2.5](https://github.com/Shedou/ChimbaBench/releases/tag/v25) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v25/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v25)
+### Текущая версия | Current version: [ChimbaBench v2.6](https://github.com/Shedou/ChimbaBench/releases/tag/v26) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v26/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v26)
 
 <details>
   <summary>Предыдущие версии | Previous versions:</summary>
 
+- [ChimbaBench v2.4](https://github.com/Shedou/ChimbaBench/releases/tag/v25)
 - [ChimbaBench v2.4](https://github.com/Shedou/ChimbaBench/releases/tag/v24)
 - [ChimbaBench v2.3](https://github.com/Shedou/ChimbaBench/releases/tag/v23)
 - [ChimbaBench v2.2](https://github.com/Shedou/ChimbaBench/releases/tag/v22)
@@ -50,7 +51,7 @@ English translation:
 ## Известные проблемы | Known problems
 
 <details>
-  <summary>ChimbaBench v2.5 and older:</summary>
+  <summary>ChimbaBench v2.6 and older:</summary>
 
 - Длительность теста увеличивается если FPS ниже 8, результаты могут быть искажены. (неправильно работают стандартные таймеры Godot Engine если FPS ниже 8).
 - The duration of the test increases if FPS is below 8, the results may be distorted. (standard Godot Engine timers do not work correctly if FPS is below 8).
