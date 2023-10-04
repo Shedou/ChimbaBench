@@ -9,6 +9,7 @@ var chi_font_m = DynamicFont.new();
 var chi_loop;
 var timer;
 var chi_test_result : float = 0;
+var timer_issue = 0;
 
 var chi_btn_size = Vector2(0, 0);
 var chi_btn_mult = Vector2(5, 4);
@@ -95,20 +96,30 @@ func _on_BTN_Start_pressed():
 	$Result.visible = true;
 	$About.visible = false;
 	chi_test_result = 0;
-	$Result.text = "Preparing!";
+	$Result.text = "Preparing! (" + str($Timer.wait_time + $Timer3.wait_time) + " seconds left)";
 	on_resize();
 	$BTN_Start.disabled = true;
+	$Timer3.start();
+
+func _on_Timer3_timeout():
+	$Result.text = "Preparing! (" + str($Timer.wait_time) + " seconds left)";
+	if Performance.get_monitor(Performance.TIME_FPS) < 8:
+		$Result.text = "Preparing! (" + str($Timer.wait_time) + " seconds left)\n WARNING! FPS < 8 !\nThe results may be incorrect\ndue to a Godot Engine timer issue!";
+		timer_issue = 1;
+	on_resize();
 	$Timer.start();
 
 func _on_Timer_timeout():
 	chi_loop = 1;
-	$Result.text = "Testing! (60 seconds)\nDon't touch mouse and keyboard!";
+	$Result.text = "Testing! (" + str($Timer2.wait_time) + " seconds)\nDon't touch mouse and keyboard!";
 	on_resize();
 	$Timer2.start();
 	
 func _on_Timer2_timeout():
 	chi_loop = 0;
-	$Result.text = chi_benchmark_name + "\n---  ChimbaPoints:  " + str(stepify(chi_test_result / 10, 0.1)) + " CPs  ---\n(CPs = total frames / 10)\nAverage FPS: " + str(stepify((chi_test_result / $Timer2.wait_time), 0.1));
+	$Result.text = chi_benchmark_name + " - ( " + str($Timer2.wait_time) + " sec. )" + "\n---  ChimbaPoints:  " + str(stepify(chi_test_result / 10, 0.1)) + " CPs  ---\n(CPs = total frames / 10)\nAverage FPS: " + str(stepify((chi_test_result / $Timer2.wait_time), 0.1));
+	if timer_issue == 1:
+		$Result.text += "\n WARNING!"
 	on_resize();
 	$BTN_Start.disabled = false;
 	$About.visible = true
@@ -125,3 +136,4 @@ func _on_BTN_About_pressed():
 
 func _on_BTN_Close_pressed():
 	$About/msg.visible = false;
+

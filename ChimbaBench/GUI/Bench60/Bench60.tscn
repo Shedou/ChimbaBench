@@ -43,8 +43,12 @@ text = "Result"
 align = 1
 valign = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer3" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
 one_shot = true
 
 [node name="Timer2" type="Timer" parent="."]
@@ -93,6 +97,7 @@ wrap_enabled = true
 
 [connection signal="pressed" from="BTN_Back" to="." method="_on_BTN_Back_pressed"]
 [connection signal="pressed" from="BTN_Start" to="." method="_on_BTN_Start_pressed"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="pressed" from="About/BTN_Info" to="." method="_on_BTN_About_pressed"]

@@ -8,6 +8,7 @@ var chi_desktop_size = Vector2(0, 0);
 var chi_btn_size = Vector2(0, 0);
 var chi_short_size = Vector2(0, 0);
 var chi_wide_size = Vector2(0, 0);
+var chi_sel_size = Vector2(0, 0);
 
 var chi_exe_directory;
 var chi_sett_d = Directory.new();
@@ -49,14 +50,22 @@ func on_resize():
 	$BTN_Close.rect_position = Vector2(20, (chi_render_size.y - 20) - chi_btn_size.y);
 	$BTN_Save.rect_position = Vector2(30 + chi_btn_size.x, (chi_render_size.y - 20) - chi_btn_size.y);
 	
-	$SEL_MSAA.rect_position = Vector2(20, 20);
-	$SEL_Aniso.rect_position = Vector2(20, 30 + $SEL_MSAA.rect_size.y);
-	$SEL_resolution.rect_position = Vector2(20, 40 + $SEL_Aniso.rect_size.y + $SEL_MSAA.rect_size.y);
+	$Left.rect_position = Vector2(20, 20);
+	$Left.rect_size = Vector2(chi_render_size.x / 2 - 30, chi_render_size.y - 60 - chi_btn_size.y);
+	$Left/BG.rect_position = Vector2(0, 0);
+	$Left/BG.rect_size = $Left.rect_size;
 	
-	$CHECK_Fullscreen.rect_size.x = chi_render_size.x / 3.5;
-	$CHECK_Fullscreen.rect_size.y = $CHECK_Fullscreen.rect_size.x / 8;
-	$CHECK_Fullscreen.rect_position = Vector2(20, 50 + $SEL_Aniso.rect_size.y + $SEL_MSAA.rect_size.y + $SEL_resolution.rect_size.y);
+	$Right.rect_position = Vector2(chi_render_size.x / 2 + 10, 20);
+	$Right.rect_size = Vector2(chi_render_size.x / 2 - 30, chi_render_size.y - 60 - chi_btn_size.y);
+	$Right/BG.rect_position = Vector2(0, 0);
+	$Right/BG.rect_size = $Right.rect_size;
 	
+	$Left/SEL_MSAA.rect_position = Vector2(10, 10);
+	$Left/SEL_Aniso.rect_position = Vector2(10, 20 + $Left/SEL_MSAA.rect_size.y);
+	$Left/SEL_resolution.rect_position = Vector2(10, 30 + $Left/SEL_Aniso.rect_size.y + $Left/SEL_MSAA.rect_size.y);
+	
+	$Left/SEL_BTN_FullScreen.rect_position = Vector2(10, 40 + $Left/SEL_Aniso.rect_size.y + $Left/SEL_MSAA.rect_size.y + $Left/SEL_resolution.rect_size.y);
+
 
 func chi_settings_save_to_file():
 	if not chi_sett_d.dir_exists(chi_sett_dir):
@@ -80,61 +89,61 @@ func chi_settings_load_from_file():
 		if chi_load_sett == OK:
 			_on_SEL_MSAA_item_selected(chi_sett.get_value("Main", "MSAA"));
 			chi_screen_set(chi_sett.get_value("Main", "Fullscreen"), chi_sett.get_value("Main", "Resolution"));
-			$SEL_resolution.select($SEL_resolution.get_item_id(chi_resolution));
+			$Left/SEL_resolution.select($Left/SEL_resolution.get_item_id(chi_resolution));
 			ProjectSettings.set_setting("window/size/resizable", false);
 	chi_aniso_sel = ProjectSettings.get_setting("rendering/quality/filters/anisotropic_filter_level");
 
 func chi_screen_set(fullscreen, resolution):
 	if fullscreen == true:
 		OS.set_window_fullscreen(true);
-		$SEL_resolution.disabled = true;
+		$Left/SEL_resolution.disabled = true;
 		chi_resol_fullscreen = true;
-		$CHECK_Fullscreen.pressed = true;
+		$Left/SEL_BTN_FullScreen.pressed = true;
 	if chi_resol_fullscreen == false:
 		_on_SEL_resolution_item_selected(resolution);
 
 func set_settings_msaa():
-	$SEL_MSAA.add_item("MSAA Disable", 0);
-	$SEL_MSAA.add_item("MSAA 2x", 1);
-	$SEL_MSAA.add_item("MSAA 4x", 2);
-	$SEL_MSAA.add_item("MSAA 8x", 3);
-	$SEL_MSAA.add_item("MSAA 16x", 4);
-	$SEL_MSAA.add_item("MSAA AVR 2x", 5);
-	$SEL_MSAA.add_item("MSAA AVR 4x", 6);
-	$SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
+	$Left/SEL_MSAA.add_item("MSAA Disable", 0);
+	$Left/SEL_MSAA.add_item("MSAA 2x", 1);
+	$Left/SEL_MSAA.add_item("MSAA 4x", 2);
+	$Left/SEL_MSAA.add_item("MSAA 8x", 3);
+	$Left/SEL_MSAA.add_item("MSAA 16x", 4);
+	$Left/SEL_MSAA.add_item("MSAA AVR 2x", 5);
+	$Left/SEL_MSAA.add_item("MSAA AVR 4x", 6);
+	$Left/SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
 
 func set_settings_fxaa():
 	pass
 
 func set_settings_aniso():
-	$SEL_Aniso.add_item("Disabled", 1);
-	$SEL_Aniso.add_item("Anisotropy 2x", 2);
-	$SEL_Aniso.add_item("Anisotropy 4x", 4);
-	$SEL_Aniso.add_item("Anisotropy 8x", 8);
-	$SEL_Aniso.add_item("Anisotropy 16x", 16);
+	$Left/SEL_Aniso.add_item("Disabled", 1);
+	$Left/SEL_Aniso.add_item("Anisotropy 2x", 2);
+	$Left/SEL_Aniso.add_item("Anisotropy 4x", 4);
+	$Left/SEL_Aniso.add_item("Anisotropy 8x", 8);
+	$Left/SEL_Aniso.add_item("Anisotropy 16x", 16);
 	var chi_aniso_choice = ProjectSettings.get_setting("rendering/quality/filters/anisotropic_filter_level");
-	$SEL_Aniso.select(chi_aniso_id[chi_aniso_choice]);
+	$Left/SEL_Aniso.select(chi_aniso_id[chi_aniso_choice]);
 
 func set_settings_resolution():
-	$SEL_resolution.add_item("640x360 - 0.23 MP", 0);
-	$SEL_resolution.add_item("800x600 - 0.48 MP", 1);
-	$SEL_resolution.add_item("1280x720 - 0.92 MP", 2);
-	$SEL_resolution.add_item("1920x1080 - 2.07 MP", 3);
-	$SEL_resolution.add_item("2560x1440 - 3.69 MP", 4);
-	$SEL_resolution.add_item("3840x2160 - 8.29 MP", 5);
-	$SEL_resolution.add_item("7680x4320 - 33.18 MP", 6);
-	$SEL_resolution.add_separator();
-	$SEL_resolution.add_item("640x480 - 0.31 MP", 7);
-	$SEL_resolution.add_item("1024x768 - 0.79 MP", 8);
-	$SEL_resolution.add_item("1366x768 - 1.05 MP", 9);
-	$SEL_resolution.add_item("1440x900 - 1.30 MP", 8);
-	$SEL_resolution.add_item("1280x1024 - 1.31 MP", 11);
-	$SEL_resolution.add_item("1600x900 - 1.44 MP", 12);
-	$SEL_resolution.add_item("1920x1200 - 2.30 MP", 13);
-	$SEL_resolution.add_item("2560x1080 - 2.76 MP", 14);
-	$SEL_resolution.add_item("2560x1600 - 4.10 MP", 15);
-	$SEL_resolution.add_item("3440x1440 - 4.82 MP", 16);
-	$SEL_resolution.select($SEL_resolution.get_item_id(chi_resolution));
+	$Left/SEL_resolution.add_item("640x360 - 0.23 MP", 0);
+	$Left/SEL_resolution.add_item("800x600 - 0.48 MP", 1);
+	$Left/SEL_resolution.add_item("1280x720 - 0.92 MP", 2);
+	$Left/SEL_resolution.add_item("1920x1080 - 2.07 MP", 3);
+	$Left/SEL_resolution.add_item("2560x1440 - 3.69 MP", 4);
+	$Left/SEL_resolution.add_item("3840x2160 - 8.29 MP", 5);
+	$Left/SEL_resolution.add_item("7680x4320 - 33.18 MP", 6);
+	$Left/SEL_resolution.add_separator();
+	$Left/SEL_resolution.add_item("640x480 - 0.31 MP", 7);
+	$Left/SEL_resolution.add_item("1024x768 - 0.79 MP", 8);
+	$Left/SEL_resolution.add_item("1366x768 - 1.05 MP", 9);
+	$Left/SEL_resolution.add_item("1440x900 - 1.30 MP", 8);
+	$Left/SEL_resolution.add_item("1280x1024 - 1.31 MP", 11);
+	$Left/SEL_resolution.add_item("1600x900 - 1.44 MP", 12);
+	$Left/SEL_resolution.add_item("1920x1200 - 2.30 MP", 13);
+	$Left/SEL_resolution.add_item("2560x1080 - 2.76 MP", 14);
+	$Left/SEL_resolution.add_item("2560x1600 - 4.10 MP", 15);
+	$Left/SEL_resolution.add_item("3440x1440 - 4.82 MP", 16);
+	$Left/SEL_resolution.select($Left/SEL_resolution.get_item_id(chi_resolution));
 
 func _on_BTN_Close_pressed():
 	visible = false;
@@ -145,17 +154,17 @@ func _on_SEL_MSAA_item_selected(index):
 	VisualServer.viewport_set_msaa(c_RID, index);
 	get_node(root + "/GUI/GUI_BaseInfo/BasePerfInfo").chi_msaa_fxaa_read();
 	chi_msaa = index;
-	$SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
+	$Left/SEL_MSAA.select(ProjectSettings.get_setting("rendering/quality/filters/msaa"));
 
 func _on_SEL_Aniso_item_selected(index):
-	if chi_aniso_sel != $SEL_Aniso.get_item_id(index):
+	if chi_aniso_sel != $Left/SEL_Aniso.get_item_id(index):
 		chi_restart_need = 1;
 		chi_aniso = index;
 		get_node(root + "/GUI/Settings/BTN_Save").text = "Save and restart";
 
 func _on_SEL_resolution_item_selected(index):
-	if chi_resol_fullscreen == false and chi_desktop_size.x >= chi_resols[$SEL_resolution.get_item_id(index)] and chi_desktop_size.y >= chi_resols[$SEL_resolution.get_item_id(index)+100]:
-		OS.set_window_size(Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]));
+	if chi_resol_fullscreen == false and chi_desktop_size.x >= chi_resols[$Left/SEL_resolution.get_item_id(index)] and chi_desktop_size.y >= chi_resols[$Left/SEL_resolution.get_item_id(index)+100]:
+		OS.set_window_size(Vector2(chi_resols[$Left/SEL_resolution.get_item_id(index)],chi_resols[$Left/SEL_resolution.get_item_id(index)+100]));
 		#OS.window_size = Vector2(chi_resols[$SEL_resolution.get_item_id(index)],chi_resols[$SEL_resolution.get_item_id(index)+100]);
 		OS.set_window_fullscreen(true);
 		OS.set_window_fullscreen(false);
@@ -164,21 +173,27 @@ func _on_SEL_resolution_item_selected(index):
 		var window_size = OS.get_window_size();
 		OS.set_window_position(screen_size*0.5 - window_size*0.5);
 
-func _on_CHECK_Fullscreen_toggled(button_pressed):
+func _on_SEL_BTN_FullScreen_toggled(button_pressed):
 	if button_pressed:
 		chi_resol_fullscreen = true;
 		OS.set_window_fullscreen(true);
-		$SEL_resolution.disabled = true;
+		#OS.window_fullscreen = true;
+		#OS.window_borderless = true;
+		$Left/SEL_resolution.disabled = true;
 	else:
 		chi_resol_fullscreen = false;
 		OS.set_window_fullscreen(false);
-		$SEL_resolution.disabled = false;
+		#OS.window_fullscreen = false;
+		#OS.window_borderless = false;
+		$Left/SEL_resolution.disabled = false;
+		_on_SEL_resolution_item_selected(chi_resolution); #Crutch for Linux
+		OS.window_borderless = false; #Crutch for Linux
 
 func _on_BTN_Save_pressed():
 	if chi_settings_save_to_file() == 1 and chi_restart_need == 0:
 		get_node(root).chi_show_message("Settings saved to file:\n" + str(chi_sett_file), "Settings Saved!");
 	if chi_settings_save_to_file() == 1 and chi_restart_need == 1:
-		ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", $SEL_Aniso.get_item_id(chi_aniso));
+		ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", $Left/SEL_Aniso.get_item_id(chi_aniso));
 		OS.execute(OS.get_executable_path(), [], false);
 		get_tree().quit();
 	if chi_settings_save_to_file() != 1:

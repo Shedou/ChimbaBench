@@ -18,8 +18,8 @@ func _ready():
 	chi_os_name = OS.get_name();
 	chi_os_model = OS.get_model_name();
 	if chi_os_name == "X11": chi_os_name = "Linux";
-	if chi_driverOGL == "GLES3": chi_driverOGL = "OpenGL/ES 3.0";
-	if chi_driverOGL == "GLES2": chi_driverOGL = "OpenGL/ES 2.0 (!!!)";
+	if chi_driverOGL == "GLES3": chi_driverOGL = "OpenGL 3.x";
+	if chi_driverOGL == "GLES2": chi_driverOGL = "OpenGL 2.x (!!!)";
 
 func chi_info():
 	chi_raster = $"..".chi_bi_render_size.x * $"..".chi_bi_render_size.y;

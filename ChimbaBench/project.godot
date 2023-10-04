@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="ChimbaBench"
+config/description="Portable benchmark and system information tool."
 run/main_scene="res://ChimbaBench.tscn"
 run/disable_stdout=true
 boot_splash/show_image=false

@@ -8,6 +8,7 @@ var chi_render_size = Vector2(0, 0);
 var chi_btn_size = Vector2(0, 0);
 var chi_short_size = Vector2(0, 0);
 var chi_wide_size = Vector2(0, 0);
+var chi_sel_size = Vector2(0, 0);
 
 var chi_langs_one:String;
 
@@ -164,11 +165,8 @@ func _on_BTN_Plus_x2_pressed():
 	else: chi_font_size_Set(2, "+");
 
 func _on_BTN_Set_pressed():
-	var test:int = 0;
-	var test2:int = 0;
-	test = int($LINE_From.text);
-	test2 = int($LINE_To.text);
-	$Langs_Main.text = str("Attention! Feature under development!\n", test, " - ", test2);
+	$Langs_Main.text = chi_unicode(int($LINE_From.text), int($LINE_To.text));
+	#$Langs_Main.text = str("Attention! Feature under development!\n", test, " - ", test2);
 
 func _on_BTN_Help_pressed():
 	get_node(root).chi_show_message("\nButton -Select Font-:  Allows you to select a font file.\n\nButtons \"<<, <, >, >>\":  Сhange the font size, click on the current size number to reset.\nHold shift to change +-10/20 instead of +-1/2.\n\n\"Code - Code\" and button -SET-:  Feature under development. In the future, will allow you to select a range of Unicode characters to display.\n", "Font Test - Help");

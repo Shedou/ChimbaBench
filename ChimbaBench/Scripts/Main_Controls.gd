@@ -6,6 +6,7 @@ var chi_render_size = Vector2(0, 0);
 var chi_btn_size = Vector2(0, 0);
 var chi_short_size = Vector2(0, 0);
 var chi_wide_size = Vector2(0, 0);
+var chi_sel_size = Vector2(0, 0);
 
 func on_resize():
 	$LBL_BTN_Main_Menu.rect_position = Vector2(10, chi_render_size.y - 40 - chi_btn_size.y * 4);

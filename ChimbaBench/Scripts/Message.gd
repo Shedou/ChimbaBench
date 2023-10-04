@@ -6,6 +6,7 @@ var chi_render_size = Vector2(0, 0);
 var chi_btn_size = Vector2(0, 0);
 var chi_short_size = Vector2(0, 0);
 var chi_wide_size = Vector2(0, 0);
+var chi_sel_size = Vector2(0, 0);
 
 func on_resize():
 	$CAPT.rect_size.x = chi_render_size.x - 20;

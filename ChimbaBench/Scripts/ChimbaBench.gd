@@ -48,9 +48,10 @@ var chi_backgrounds = {
 	};
 
 var chi_sel = {
-	"sel_settings_msaa" : node_settings + "/SEL_MSAA",
-	"sel_settings_aniso" : node_settings + "/SEL_Aniso",
-	"sel_settings_resolution" : node_settings + "/SEL_resolution",
+	"sel_settings_msaa" : node_settings + "/Left/SEL_MSAA",
+	"sel_settings_aniso" : node_settings + "/Left/SEL_Aniso",
+	"sel_settings_resolution" : node_settings + "/Left/SEL_resolution",
+	"sel_btn_fullscreen" : node_settings + "/Left/SEL_BTN_FullScreen",
 	};
 
 var chi_labels = {
@@ -114,7 +115,6 @@ var chi_wide_gui = {
 	};
 
 var chi_other = {
-	"check_fullscreen" : node_settings + "/CHECK_Fullscreen",
 	"lang_user_text" : node_font_test + "/User_Text",
 	"lbl_spacer" : node_font_test + "/LBL_Spacer",
 	"message_msg" : node_message + "/MSG",

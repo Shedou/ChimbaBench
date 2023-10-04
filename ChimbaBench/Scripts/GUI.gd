@@ -50,6 +50,7 @@ func on_resize():
 		get_node(get_node(root).chi_nodes[chi_item]).chi_btn_size = chi_btn_size;
 		get_node(get_node(root).chi_nodes[chi_item]).chi_short_size = chi_short_size;
 		get_node(get_node(root).chi_nodes[chi_item]).chi_wide_size = chi_wide_size;
+		get_node(get_node(root).chi_nodes[chi_item]).chi_sel_size = chi_sel_size;
 		get_node(get_node(root).chi_nodes[chi_item]).rect_size = chi_render_size;
 	for chi_item in get_node(root).chi_btn_gui:
 		get_node(get_node(root).chi_btn_gui[chi_item]).rect_size = chi_btn_size;

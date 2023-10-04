@@ -3,8 +3,8 @@ extends Control
 export var more_info : bool = false;
 export(String, FILE) var font_data = "res://Fonts/determination2/determination2.ttf";
 
-var chi_project_name_and_version = "ChimbaBench 2.5 (GPLv3+)";
-var chi_bi_font = { "outline_s":1, "outline_m":2, "outline_l":3, "outline_xl":4 }
+var chi_project_name_and_version = "ChimbaBench 2.6 (GPLv3+)";
+var chi_bi_font = { "outline_s":2, "outline_m":2, "outline_l":3, "outline_xl":4 }
 
 var chi_bi_render_size = Vector2(0, 0);
 var chi_bi_windows_size = Vector2(0, 0);
@@ -58,7 +58,7 @@ func chi_font_set():
 	font.font_data = load(font_data);
 	return font;
 
-func chi_font_set_settings(font, fsize = 24, outliine_size = 2, outline_color:Color = Color(0.2, 0.2, 0.30, 1)):
+func chi_font_set_settings(font, fsize = 24, outliine_size = 2, outline_color:Color = Color(0.25, 0.25, 0.35, 1)):
 	font.size = fsize;
 	font.outline_size = outliine_size;
 	font.outline_color = outline_color;
