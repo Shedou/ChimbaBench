@@ -55,6 +55,18 @@ English translation:
 ## Известные проблемы | Known problems
 
 <details>
+  <summary>LLVMpipe Driver Problem...</summary>
+
+|![402466_O](https://github.com/Shedou/ChimbaBench/assets/19572158/81a5e3bf-c93b-465e-bc7e-33a605f0b480)|![402468_O](https://github.com/Shedou/ChimbaBench/assets/19572158/e56d2dad-17ad-4cfd-b772-fde53164d05c)|![401490_O](https://github.com/Shedou/ChimbaBench/assets/19572158/69f13a37-c5a2-4fed-83e7-ee663c513ba6)|
+|-|-|-|
+
+https://overclockers.ru/blog/Hard-Workshop/show/101225/llvmpipe-problema-sovremennyh-distributivov-linux-polomali-chto-rabotalo
+
+https://overclockers.ru/blog/Hard-Workshop/show/100259/llvmpipe-problema-sovremennyh-distributivov-linux
+
+</details>
+
+<details>
   <summary>ChimbaBench v2.6 and older:</summary>
 
 - Длительность теста увеличивается если FPS ниже 8, результаты могут быть искажены. (неправильно работают стандартные таймеры Godot Engine если FPS ниже 8).
