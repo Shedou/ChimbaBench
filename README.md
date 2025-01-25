@@ -100,4 +100,4 @@ GODOT Engine - https://godotengine.org/license
 Any third party are subject to their own licenses.
 
 ## Project status
-In the work.
+Paused.
