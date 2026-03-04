@@ -1,5 +1,7 @@
 # ChimbaBench [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/total.svg)](https://github.com/Shedou/ChimbaBench/releases)
 
+* New active project ChimbaBenchXPL: [https://github.com/Shedou/ChimbaBenchXPL](https://github.com/Shedou/ChimbaBenchXPL)
+
 ## Описание | Description
 Портативное многофункциональное приложение включающее в себя тесты производительности и дополнительные инструменты для получения информации о системе.
 
