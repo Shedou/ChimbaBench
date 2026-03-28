@@ -1,4 +1,4 @@
-# ChimbaBench [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/total.svg)](https://github.com/Shedou/ChimbaBench/releases)
+# ChimbaBench (Windows/Linux/FreeBSD) [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/total.svg)](https://github.com/Shedou/ChimbaBench/releases)
 
 * New active project ChimbaBenchXPL: [https://github.com/Shedou/ChimbaBenchXPL](https://github.com/Shedou/ChimbaBenchXPL)
 
@@ -36,7 +36,11 @@ English translation:
 | ![Screenshot_2023-10-04_22-38-05](https://github.com/Shedou/ChimbaBench/assets/19572158/c95a4fd9-c062-4e2d-b16e-331bf7382d57) | ![Screenshot_2023-10-04_22-39-41](https://github.com/Shedou/ChimbaBench/assets/19572158/9491cc79-7015-467e-aefd-8c04d4ba136a) |
 
 ## Загрузки | Downloads
-### Текущая версия | Current version: [ChimbaBench v2.6](https://github.com/Shedou/ChimbaBench/releases/tag/v26) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v26/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v26)
+### Текущая версия | Current version:
+Windows / Linux: [ChimbaBench v2.6](https://github.com/Shedou/ChimbaBench/releases/tag/v26) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v26/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v26)
+
+FreeBSD: [ChimbaBench v2.6 BSD](https://github.com/Shedou/ChimbaBench/releases/tag/v26bsd) - [![Github Releases](https://img.shields.io/github/downloads/Shedou/ChimbaBench/v26bsd/total.svg)](https://github.com/Shedou/ChimbaBench/releases/tag/v26bsd)
+
 
 <details>
   <summary>Предыдущие версии | Previous versions:</summary>
@@ -57,7 +61,7 @@ English translation:
 ## Известные проблемы | Known problems
 
 <details>
-  <summary>LLVMpipe Driver Problem...</summary>
+  <summary>Mesa3D LLVMpipe Driver Problem...</summary>
 
 |![402466_O](https://github.com/Shedou/ChimbaBench/assets/19572158/81a5e3bf-c93b-465e-bc7e-33a605f0b480)|![402468_O](https://github.com/Shedou/ChimbaBench/assets/19572158/e56d2dad-17ad-4cfd-b772-fde53164d05c)|![401490_O](https://github.com/Shedou/ChimbaBench/assets/19572158/69f13a37-c5a2-4fed-83e7-ee663c513ba6)|
 |-|-|-|
@@ -79,6 +83,7 @@ https://overclockers.ru/blog/Hard-Workshop/show/100259/llvmpipe-problema-sovreme
 ## Системные требования | System requirements:
 - Windows 7+
 - Linux дистрибутивы 2013 года и новее | Linux distributions 2013 year and newer (requires GLIBC 2.17 or later)
+- FreeBSD 13+ (GhosrBSD 23+)
 - OpenGL 3.x (minimum OpenGL 2.1 / OpenGL ES 2.0)
 
 ## License "ChimbaBench"
