@@ -83,7 +83,7 @@ https://overclockers.ru/blog/Hard-Workshop/show/100259/llvmpipe-problema-sovreme
 ## Системные требования | System requirements:
 - Windows 7+
 - Linux дистрибутивы 2013 года и новее | Linux distributions 2013 year and newer (requires GLIBC 2.17 or later)
-- FreeBSD 13+ (GhosrBSD 23+)
+- FreeBSD 13+ (GhostBSD 23+)
 - OpenGL 3.x (minimum OpenGL 2.1 / OpenGL ES 2.0)
 
 ## License "ChimbaBench"
